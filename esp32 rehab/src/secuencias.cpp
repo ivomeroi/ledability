@@ -1,10 +1,8 @@
-#include "secuencias.h"
+#include <Adafruit_NeoPixel.h>
 
-Adafruit_NeoPixel tira(49, 2, NEO_GRB + NEO_KHZ800);
-
-
-void flechas(char direccion, int color){
+void flechas(char direccion, int color, Adafruit_NeoPixel tira){
     int r, g, b; 
+
     if (color = 0){
         r=255;
         g=0;
@@ -18,7 +16,8 @@ void flechas(char direccion, int color){
         g=0;
         b=255;
     }
-    
+    tira.setBrightness(20);
+    tira.begin();
     switch(direccion){
         case 'u':
             //ARRIBA
@@ -34,6 +33,8 @@ void flechas(char direccion, int color){
             tira.setPixelColor(31,r,g,b);// posicion (0,R G B)
             tira.setPixelColor(38,r,g,b);// posicion (0,R G B)
             tira.setPixelColor(45,r,g,b);// posicion (0,R G B)
+            tira.show();
+
             break;
         case 'd':
               //ABAJO
@@ -64,6 +65,8 @@ void flechas(char direccion, int color){
             tira.setPixelColor(29,r,g,b);// posicion (0,R G B)
             tira.setPixelColor(11,r,g,b);// posicion (0,R G B)
             tira.setPixelColor(39,r,g,b);// posicion (0,R G B)
+            tira.show();
+
             break;
         case 'r':
             //DERECHA
@@ -79,6 +82,7 @@ void flechas(char direccion, int color){
             tira.setPixelColor(19,r,g,b);// posicion (0,R G B)
             tira.setPixelColor(9,r,g,b);// posicion (0,R G B)
             tira.setPixelColor(37,r,g,b);// posicion (0,R G B)
+            tira.show();
             break;
     }
     
