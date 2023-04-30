@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single" android:id="@+id/menutop">
+        <item
+            android:id="@+id/selector"
+            android:title="@string/selector"
+            android:orderInCategory="1">
+        </item>
+
+        <item
+            android:id="@+id/programa"
+            android:title="@string/programa"
+            android:orderInCategory="2"/>
+
+    </group>
+</menu>

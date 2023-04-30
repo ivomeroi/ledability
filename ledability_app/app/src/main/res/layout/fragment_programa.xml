@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:id="@+id/c"
+        android:orientation="vertical"
+        android:layout_alignParentTop="true"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/timer"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="Presione Iniciar"
+            android:textSize="30sp"
+            android:gravity="center" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="120dp"
+        android:id="@+id/dagadf"
+        android:orientation="vertical"
+        android:layout_alignParentTop="true"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/instructions"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="10dp"
+            android:text="Por favor, encienda los PADS. Al encerderlos, verifique que el led ubicado en el lado superior de cada uno este encendido (como se muestra en la imagen)."
+            android:textSize="16sp"
+            android:gravity="center" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:id="@+id/botones"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_horizontal">
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/grafico"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/botones"
+        android:layout_below="@+id/botones"
+        android:layout_marginTop="-500dp"
+        android:layout_marginBottom="70dp"
+        android:gravity="center"
+        android:paddingLeft="30dp"
+        android:paddingRight="@dimen/activity_horizontal_margin">
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:rowCount="2"
+            android:columnCount="2">
+
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:text="Button 1"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_gravity="center"/>
+
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:text="Button 2"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:layout_gravity="center"/>
+
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:text="Button 3"
+            android:layout_row="1"
+            android:layout_column="0"
+            android:layout_gravity="center"/>
+
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:text="Button 4"
+            android:layout_row="1"
+            android:layout_column="1"
+            android:layout_gravity="center"/>
+        </GridLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:id="@+id/iniciopausa"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_horizontal">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/iniciarPausar"
+            android:layout_marginRight="80dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:backgroundTint="@color/colorAccent"
+            android:text="Conectar"
+            android:onClick="iniciarPausar"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/finalizar"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:backgroundTint="@color/colorAccent"
+            android:text="Finalizar"
+            android:onClick="finalizar"/>
+    </LinearLayout>
+</RelativeLayout>
