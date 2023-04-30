@@ -19,7 +19,7 @@ void peering(uint8_t direcciones[][6]){
     esp_now_peer_info_t peerInfo;
     peerInfo.channel = 0;  
     peerInfo.encrypt = false;
-
+    
     for (int i = 0; i < 2; i++) {
         memcpy(peerInfo.peer_addr, direcciones[i], 6);
     }
