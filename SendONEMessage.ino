@@ -1,11 +1,11 @@
 #include <esp_now.h>
 #include <WiFi.h>
 
-uint8_t broadcastAddress[] = {0x0C, 0xB8, 0x15, 0xCB, 0xFF, 0x84};
+uint8_t broadcastAddress[] = {0x0C, 0xB8, 0x15, 0xCB, 0xEE, 0x00};
 
 // Must match the receiver structure
 typedef struct struct_message {
-    int ID; // must be unique for each sender board
+    int id; // must be unique for each sender board
     int x;
     int y;
 } struct_message;
@@ -43,8 +43,8 @@ void setup() {
   amigoInfo.encrypt = false;
   
   // Add peer        
-  if (esp_now_add_peer(&peerInfo) != ESP_OK){
-    Serial.println("Failed to add peer");
+  if (esp_now_add_peer(&amigoInfo) != ESP_OK){
+    Serial.println("Failed to add peeramigo");
     return;
   }
 }
