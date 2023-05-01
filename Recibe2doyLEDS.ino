@@ -36,8 +36,10 @@ void OnDataRecv(const uint8_t * mac_addr, const uint8_t *incomingData, int len) 
   // Update the structures with the new incoming data
   boardsStruct[myData.id-1].x = myData.x;
   boardsStruct[myData.id-1].y = myData.y;
-  Serial.printf("x value: %d \n", boardsStruct[myData.id-1].x);
-  Serial.printf("y value: %d \n", boardsStruct[myData.id-1].y);
+  int board1X = boardsStruct[myData.id-1].x;
+  int board1Y = boardsStruct[myData.id-1].y;
+  Serial.printf("x value: %d \n", board1X);
+  Serial.printf("y value: %d \n", board1Y);
 
   // check the received value
   if (myData.x == 1) {
@@ -75,7 +77,6 @@ void setup() {
  
 void loop() {
   // Acess the variables for each board
-  int board1X = boardsStruct[myData.id-1].x;
-  int board1Y = boardsStruct[myData.id-1].y;
+  
   
 }
