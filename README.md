@@ -6,3 +6,7 @@ MAC de ESP:
 2 - 0C:B8:15:CB:FF:84
 
 3 - 0C:B8:15:CB:FA:1C
+
+
+
+El 9/5 debemos hacer la 2da entrega de esto. 
