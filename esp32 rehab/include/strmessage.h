@@ -2,7 +2,7 @@
 #define MY_STRUCT_H
 
 typedef struct {
-  int patron;
+  char patron;
   int color;
 } struct_message;
 
