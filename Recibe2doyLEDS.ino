@@ -15,12 +15,12 @@ typedef struct struct_message {
 struct_message myData;
 
 // Create a structure to hold the readings from each board
-struct_message board1;
+struct_message board2;
 //struct_message board2;
 //struct_message board3;
 
 // Create an array with all the structures
-struct_message boardsStruct[1] = {board1};//, board2, board3};
+struct_message boardsStruct[1] = {board2};//, board2, board3};
 
 // callback function that will be executed when data is received
 void OnDataRecv(const uint8_t * mac_addr, const uint8_t *incomingData, int len) {
@@ -38,6 +38,18 @@ void OnDataRecv(const uint8_t * mac_addr, const uint8_t *incomingData, int len) 
   boardsStruct[myData.id-1].y = myData.y;
   Serial.printf("x value: %d \n", boardsStruct[myData.id-1].x);
   Serial.printf("y value: %d \n", boardsStruct[myData.id-1].y);
+
+  // check the received value
+  if (myData.x == 1) {
+    digitalWrite(LEDCITO, HIGH);  // turn on LEDCITO pin
+    delay(6000); // wait for 6 seconds
+    digitalWrite(LEDCITO, LOW);  // turn off LEDCITO pin
+  } else if (myData.x == 0) {
+    digitalWrite(LEDA, HIGH);  // turn on LEDA pin
+    delay(6000); // wait for 6 seconds
+    digitalWrite(LEDA, LOW);  // turn off LEDA pin
+  }
+  
   Serial.println();
 }
  
@@ -63,18 +75,7 @@ void setup() {
  
 void loop() {
   // Acess the variables for each board
-  int board1X = boardsStruct[0].x;
-  int board1Y = boardsStruct[0].y;
-
- if (board1X == 1) {
-  digitalWrite(LEDCITO,HIGH);
- }
- if (board1X == 0) {
-  digitalWrite(LEDA,HIGH);}
-
-  delay(8000);
-  digitalWrite(LEDCITO,LOW);
-  digitalWrite(LEDA,LOW);
-  delay(8000);
+  int board1X = boardsStruct[myData.id-1].x;
+  int board1Y = boardsStruct[myData.id-1].y;
   
 }
