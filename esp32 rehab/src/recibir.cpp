@@ -1,7 +1,8 @@
 #include <WiFi.h>
 #include <esp_now.h>
 #include <cstring>
-#include "strmessage.h"
+#include "strstruct.h"
+#include "secuencias.h"
 
 //--------------------MAC del server (suponiendo 1 como server)--------------------
 uint8_t MACaddressServer[][6] = {
@@ -27,8 +28,15 @@ void readMac(){
   else{
     bool isServer = false;
   }
-} 
+}
+// callback function that will be executed when data is received
+void OnDataRecv(const uint8_t *incomingData, int len) {
+  //copy from incoming data to mydata 
+  memcpy(&myData, incomingData, sizeof(myData));
+  //Uso mi secuencia de tiras leds
+  flechas(myData.patron, myData.color);
+}
+//--------------------Funcion de recibir--------------------
 //la readMac sirve para identificar si el ESP32 es el server
 //o si es un pad (el que recibe del server. En este caso, el server es el ESP32 1)Recibe el estado de los otros ESP que son pads. 
 //En caso que no sea el server recibo la informacion de color y patron a mostrar. 
-void 

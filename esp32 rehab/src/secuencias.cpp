@@ -1,8 +1,8 @@
 #include <Adafruit_NeoPixel.h>
 
-void flechas(char direccion, int color, Adafruit_NeoPixel tira){
+void flechas(char direccion, int color){
     int r, g, b; 
-
+    Adafruit_NeoPixel tira = Adafruit_NeoPixel(49, 16, NEO_GRB + NEO_KHZ800);
     if (color == 0){
         r=255;
         g=0;

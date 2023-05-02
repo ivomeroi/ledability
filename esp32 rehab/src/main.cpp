@@ -20,7 +20,7 @@ void setup() {
 }
 void loop() {
   // Call flechas function with "arriba" direction and red color
-flechas('d', 1, strip);
+
 
 
 }
