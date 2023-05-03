@@ -54,8 +54,6 @@ void OnDataRecv(const uint8_t * mac_addr, const uint8_t *incomingData, int len) 
   bool RcvNewDel2 = true;
 }
 
-
-
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(115200);
