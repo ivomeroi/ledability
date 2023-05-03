@@ -90,7 +90,7 @@ void loop() {
     if (RcvNewDel3 == true) {
       LEDA = HIGH;
       RcvNewDel3 == false;
-      Q2envie == 1;
+      Q2envie = 1;
       delay (15000);  ////
   }}
 /////SEND
@@ -109,7 +109,7 @@ void loop() {
   else {
     Serial.println("Error sending the data CARAJO");
   }
-    Q2envie==0; ///borrable)?
+    Q2envie=0; ///borrable)?
   delay (10000);
 
 }}
