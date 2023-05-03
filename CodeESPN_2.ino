@@ -86,12 +86,13 @@ void setup() {
 void loop() {
 ///// RCV
   int Q2envie = 0;
-  while (Q2envie == 0); {
+  while (Q2envie == 0) {
     if (RcvNewDel3 == true) {
-      LEDA = HIGH;
+      digitalWrite(LEDA,HIGH);
       RcvNewDel3 == false;
       Q2envie = 1;
-      delay (15000);  ////
+      delay (15000);
+      digitalWrite(LEDA,LOW);////
   }}
 /////SEND
   // put your main code here, to run repeatedly:
@@ -111,5 +112,6 @@ void loop() {
   }
     Q2envie=0; ///borrable)?
   delay (10000);
+
 
 }}
