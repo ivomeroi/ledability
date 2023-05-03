@@ -23,7 +23,8 @@ extern struct_bool pad2;
 extern struct_bool pad3;
 extern struct_bool boardpads[3];
 
-extern uint8_t allBroadcastAddresses[3][6];
+extern uint8_t allBroadcastAddresses[4][6];
+extern uint8_t MACaddressServer[][6];
 extern bool isServer;
 
 #endif // _STRSTRUCT_H_

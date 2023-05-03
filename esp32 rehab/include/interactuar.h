@@ -1,0 +1,2 @@
+
+void interaccion(int sensorPin);

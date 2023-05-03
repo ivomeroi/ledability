@@ -3,8 +3,8 @@
 #include <cstring>
 #include "strstruct.h" 
 
-//--------------------Funciones--------------------
-//--Emparejar-- (ver si lo pongo en otro archivo)--
+//--------------------Funciones----------------------------------------
+//--Emparejar-- (ver si lo pongo en otro archivo)----------------------
 void peering(uint8_t direcciones[4][6]){
 
     // Init ESP-NOW - Peer
@@ -27,17 +27,24 @@ void peering(uint8_t direcciones[4][6]){
         }
     }
 }
-//--Enviar-- (de server a otros ESP32)--------------------
-void sendpads(uint8_t direcciones[3][6],struct_message dupla){
+//-----------------Enviar-- (de server a otros ESP32)--------------------
+void sendpads(uint8_t direcciones[4][6], struct_message dupla, bool isServer,bool estadoPad){
         // send data
     for(int i = 0; i < 3; i++){
-        
-        esp_err_t result = esp_now_send(direcciones[i], (uint8_t *) &dupla, sizeof(dupla));
-        if (result == ESP_OK) {
-            Serial.println("Sent with success");
-        }
-        else {
-            Serial.println("Error sending the data");
+        if(isServer){
+            esp_err_t result = esp_now_send(direcciones[i], (uint8_t *) &dupla, sizeof(dupla));
+            if (result == ESP_OK) {
+                Serial.println("Sent with success");
+            } else {
+                Serial.println("Error sending the data");
+            }
+        } else {
+            esp_err_t result = esp_now_send(MACaddressServer[6], (uint8_t *) &estadoPad, sizeof(estadoPad));
+            if (result == ESP_OK) {
+                Serial.println("Sent with success");
+            } else {
+                Serial.println("Error sending the data");
+            }
         }
     }
 }
