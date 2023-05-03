@@ -105,7 +105,7 @@ void loop() {
    
   if (result == ESP_OK) {
     Serial.println("Sent with success OH FUCK YEAH");
-  Q3envie ==0;
+  Q3envie =0;
   }
   else {
     Serial.println("Error sending the data CARAJO");
@@ -116,7 +116,7 @@ void loop() {
   while (Q3envie==0){
   if (RcvNewDel2 == true) {
       LEDCITO = HIGH;
-      RcvNewDel2 == false;
+      RcvNewDel2 = false;
       delay (15000);
       for (int i =0; i<20; i++) {      
       digitalWrite(LEDCITO,!digitalRead(LEDCITO));
