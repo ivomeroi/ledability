@@ -54,6 +54,8 @@ void OnDataRecv(const uint8_t * mac_addr, const uint8_t *incomingData, int len) 
   bool RcvNewDel2 = true;
 }
 
+
+
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(115200);
@@ -86,12 +88,18 @@ void setup() {
 }
 
 void loop() {
+  int Q3envie = 0;
   int STARTstate = digitalRead(START);
   if (STARTstate==LOW){
     delay(550);}
-    else{
+    else{int Q3envie = 0; // cambio aquí
+    delay(3500);
+    while (digitalRead(START) == HIGH) { // agregar un bucle de espera para la presión del botón
+      delay(100);
+    }
+    Q3envie = 1; // activar el envío de datos después de presionar el botón
+    delay(1000); // agregar una pequeña pausa para evitar rebotes de botones
     
-    int Q3envie =1;
     delay(3500);
 /////SEND
   // put your main code here, to run repeatedly:
@@ -115,14 +123,14 @@ void loop() {
 ///// RCV
   while (Q3envie==0){
   if (RcvNewDel2 == true) {
-      LEDCITO = HIGH;
+      digitalWrite(LEDCITO,HIGH);
       RcvNewDel2 = false;
       delay (15000);
       for (int i =0; i<20; i++) {      
       digitalWrite(LEDCITO,!digitalRead(LEDCITO));
        delay(100);
        }
-       LEDCITO =LOW;
+       digitalWrite(LEDCITO,LOW);
   }
   Q3envie==1; /// borrable)?
   }
