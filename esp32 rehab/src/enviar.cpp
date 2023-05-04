@@ -1,50 +1,30 @@
 #include <WiFi.h>
 #include <esp_now.h>
 #include <cstring>
-#include "globales.h" 
+#include "enviar.h"
 
-//--------------------Funciones----------------------------------------
-//--Emparejar-- (ver si lo pongo en otro archivo)----------------------
-void peering(uint8_t direcciones[4][6]){
+esp_now_peer_info_t peerInfo;
 
-    // Init ESP-NOW - Peer
-    esp_now_peer_info_t peer[3];
-    //Leer su propia MAC
-    WiFi.mode(WIFI_MODE_STA);
-    uint8_t ownmac[6];
-    esp_efuse_mac_get_default(ownmac);
+uint8_t broadcastAddress[6]={0x0C,0xB8,0x15,0xCB,0xFA,0x1C};
 
-    //Emparejar con los otros ESP32
-    for (int i = 0; i < 3; i++) {
-        if (ownmac[6]!=direcciones[i][6]){
-            peer[i].channel = i;  //registro de un canal por cada direccion
-            peer[i].encrypt = false; 
-            memcpy(peer[i].peer_addr, direcciones[i], 6);
-                if (esp_now_add_peer(&peer[i]) != ESP_OK){ //registro de cada direccion
-                    Serial.println("Failed to add peer");
-                    return;
-                    }
-        }
+//----------------Funciones-------------------------------------------
+void peering(){
+    // Register peer
+    memcpy(peerInfo.peer_addr,broadcastAddress, 6);
+    peerInfo.channel = 0;  
+    peerInfo.encrypt = false;
+    // Add peer        
+    if (esp_now_add_peer(&peerInfo) != ESP_OK){
+        Serial.println("Failed to add ESP32 - 3");
+        return;
+    } else{
+        Serial.println("Added ESP32 - 3");
     }
 }
-//-----------------Enviar-- (de server a otros ESP32)--------------------
-void sendpads(uint8_t direcciones[4][6], struct_message dupla, bool isServer,bool estadoPad){
-        // send data
-    for(int i = 0; i < 3; i++){
-        if(isServer){
-            esp_err_t result = esp_now_send(direcciones[i], (uint8_t *) &dupla, sizeof(dupla));
-            if (result == ESP_OK) {
-                Serial.println("Sent with success");
-            } else {
-                Serial.println("Error sending the data");
-            }
-        } else {
-            esp_err_t result = esp_now_send(MACaddressServer[6], (uint8_t *) &estadoPad, sizeof(estadoPad));
-            if (result == ESP_OK) {
-                Serial.println("Sent with success");
-            } else {
-                Serial.println("Error sending the data");
-            }
-        }
-    }
+
+//--------------------Funcion onDatasent------------------------------
+
+void OnDataSent(const uint8_t *mac_addr, esp_now_send_status_t status) {
+  Serial.print("\r\nLast Packet Send Status:\t");
+  Serial.println(status == ESP_NOW_SEND_SUCCESS ? "Delivery Success" : "Delivery Fail");
 }

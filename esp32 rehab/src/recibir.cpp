@@ -1,9 +1,11 @@
 #include <WiFi.h>
 #include <esp_now.h>
 #include <cstring>
-#include "globales.h"
 #include "secuencias.h"
-
+#include "recibir.h"
+#include <Adafruit_NeoPixel.h>
+#include "enviar.h"
+/*
 //--------------------Funciones: Determinar si es servidor------------------------
 void readMac(bool isServer){
   WiFi.mode(WIFI_MODE_STA);
@@ -16,7 +18,13 @@ void readMac(bool isServer){
    isServer = false;
   }
 }
+*/
 //--------------------Funcion de recibir-------------------------------------------
+
+struct_message myData;
+
+bool recibido;
+
 void OnDataRecv(const uint8_t *macAddr, const uint8_t *incomingData, int len) {
 
     //------------- Copio la direccion MAC del emisor-------------------------
@@ -27,19 +35,13 @@ void OnDataRecv(const uint8_t *macAddr, const uint8_t *incomingData, int len) {
     Serial.println(macStr);
     //------------------------------------------------------------
     Serial.println("Packet received");
-    memcpy(&dupla, incomingData, sizeof(dupla));
-    /*boardsStruct[dupla.id-1].id = dupla.id;
-    boardsStruct[dupla.id-1].patron = dupla.patron;
-    boardsStruct[dupla.id-1].color = dupla.color;
+    memcpy(&myData, incomingData, sizeof(myData));
     //------------------------------------------------------------
-    Serial.printf("patron value: %d \n", boardsStruct[dupla.id-1].patron);
-    Serial.printf("color value: %d \n", boardsStruct[dupla.id-1].color);*/
+    recibido = true;
+    //------------- Imprimo los datos recibidos-------------------------
     Serial.println();
     // Uso mi secuencia de tiras leds
-    flechas(dupla.patron, dupla.color); 
+    flechas(myData.patron, myData.color); 
+    
+  } 
 
-}
-//--------------------Funcion de recibir-------------------------------------------
-//la readMac sirve para identificar si el ESP32 es el server
-//o si es un pad (el que recibe del server. En este caso, el server es el ESP32 1)Recibe el estado de los otros ESP que son pads. 
-//En caso que no sea el server recibo la informacion de color y patron a mostrar. 

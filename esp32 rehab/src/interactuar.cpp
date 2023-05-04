@@ -1,7 +1,6 @@
 #include <Arduino.h>
 #include "secuencias.h"
 #include <secuencias.h>
-#include "globales.h"
 
 void interaccion(int sensorPin){
     pinMode(sensorPin, INPUT);

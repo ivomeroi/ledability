@@ -1,9 +1,15 @@
-#ifndef _ENVIAR_H_
-#define _ENVIAR_H_
+#ifndef ENVIAR_H
+#define ENVIAR_H
 
-#include "globales.h"
+#include <stdint.h>
+//void readMac(bool isServer);
 
-void peering(uint8_t direcciones[4][6]);
-void sendpads(uint8_t direcciones[4][6],struct_message);
 
-#endif
+extern uint8_t broadcastAddress[6];
+
+extern esp_now_peer_info_t peerInfo;
+
+void peering();
+void OnDataRecv(const uint8_t *macAddr, const uint8_t *incomingData, int len);
+
+#endif // ENVIAR_H
