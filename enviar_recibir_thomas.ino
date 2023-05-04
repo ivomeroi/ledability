@@ -1,7 +1,7 @@
 #include <esp_now.h>
 #include <WiFi.h>
 
-uint8_t broadcastAddress[] = {0x0C,0xB8,0x15,0xCB,0xFF,0x84};
+uint8_t broadcastAddress[] = {0x0C,0xB8,0x15,0xCB,0xFF,0x84}; //va al ESP32 - 2
 
 // Must match the receiver structure
 typedef struct struct_message1 {
