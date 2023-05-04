@@ -1,7 +1,7 @@
 #include <WiFi.h>
 #include <esp_now.h>
 #include <cstring>
-#include "strstruct.h" 
+#include "globales.h" 
 
 //--------------------Funciones----------------------------------------
 //--Emparejar-- (ver si lo pongo en otro archivo)----------------------

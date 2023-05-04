@@ -1,7 +1,7 @@
 #include <WiFi.h>
 #include <esp_now.h>
 #include <cstring>
-#include "strstruct.h"
+#include "globales.h"
 #include "secuencias.h"
 
 //--------------------Funciones: Determinar si es servidor------------------------
@@ -18,20 +18,26 @@ void readMac(bool isServer){
 }
 //--------------------Funcion de recibir-------------------------------------------
 void OnDataRecv(const uint8_t *macAddr, const uint8_t *incomingData, int len) {
-  
-  if (!isServer) {
 
-    memcpy(&myData, incomingData, sizeof(myData));
-    
+    //------------- Copio la direccion MAC del emisor-------------------------
+    char macStr[18];  
+    Serial.print("Packet received from: ");
+    snprintf(macStr, sizeof(macStr), "%02x:%02x:%02x:%02x:%02x:%02x",
+           macAddr[0], macAddr[1], macAddr[2], macAddr[3], macAddr[4], macAddr[5]);
+    Serial.println(macStr);
+    //------------------------------------------------------------
+    Serial.println("Packet received");
+    memcpy(&dupla, incomingData, sizeof(dupla));
+    /*boardsStruct[dupla.id-1].id = dupla.id;
+    boardsStruct[dupla.id-1].patron = dupla.patron;
+    boardsStruct[dupla.id-1].color = dupla.color;
+    //------------------------------------------------------------
+    Serial.printf("patron value: %d \n", boardsStruct[dupla.id-1].patron);
+    Serial.printf("color value: %d \n", boardsStruct[dupla.id-1].color);*/
+    Serial.println();
     // Uso mi secuencia de tiras leds
-    flechas(myData.patron, myData.color); 
-    // Si no es el server, recibo la información necesaria para mostrar la secuencia
+    flechas(dupla.patron, dupla.color); 
 
-  } else { 
-    // si es el server, recibo el estado de los pads(si ya se apagó o no)
-    memcpy(&estadoPad, incomingData, sizeof(estadoPad));
-    boardpads[estadoPad.id-1].state = estadoPad.state;
-  }
 }
 //--------------------Funcion de recibir-------------------------------------------
 //la readMac sirve para identificar si el ESP32 es el server

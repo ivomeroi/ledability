@@ -4,28 +4,36 @@
 #include <WiFi.h>
 #include <esp_now.h>
 #include <recibir.h>
-#include <enviar.h>
-#include <strstruct.h>
-#include <interactuar.h>
+#include "globales.h"
 
 //------------------------------------------------------------
-Adafruit_NeoPixel strip = Adafruit_NeoPixel(49, 16, NEO_GRB + NEO_KHZ800);
+//Adafruit_NeoPixel strip = Adafruit_NeoPixel(49, 16, NEO_GRB + NEO_KHZ800);
 
 void setup() {
-  // Initialize LED strip
-  Serial.begin(115200);  
-  WiFi.mode(WIFI_STA);
-  esp_now_init();
-  strip.setBrightness(20);
-  strip.begin(); 
-  strip.clear(); 
+
+  Serial.begin(115200); 
+
+  WiFi.mode(WIFI_STA);//Configura el modo de WiFi como estación (cliente)
+  
+  if (esp_now_init() != ESP_OK) {
+    Serial.println("Error initializing ESP-NOW");
+  return; 
+  //strip.setBrightness(20);
+  //strip.begin(); 
+  //strip.clear(); 
 
   //peering(allBroadcastAddresses);
+  }
+    
+    esp_now_register_recv_cb(OnDataRecv);
 
-  esp_now_register_recv_cb(OnDataRecv);
 }
+//------------------------------------------------------------
 void loop() {
+
   Serial.println(dupla.patron);
   Serial.println(dupla.color);
-  delay(10000);
+
+  delay(1000);
+
 }
