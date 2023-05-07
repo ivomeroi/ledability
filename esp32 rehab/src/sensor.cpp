@@ -24,7 +24,6 @@ void apagarSecuencia(){
       tira.clear();
       tira.show();
       delay(1000);
-      flag=false;
       }
     } 
 }

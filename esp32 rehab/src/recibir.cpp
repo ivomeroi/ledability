@@ -46,6 +46,8 @@ void OnDataRecv(const uint8_t *macAddr, const uint8_t *incomingData, int len) {
     recibido = true;
     //------------- Imprimo los datos recibidos-------------------------
     Serial.println();
+    Serial.println(myData.patron);
+    Serial.println(myData.color);
     // Uso mi secuencia de tiras leds
     flechas(myData.patron, myData.color); 
     //------------- Estado de flag-------------------------

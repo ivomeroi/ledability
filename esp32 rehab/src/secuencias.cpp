@@ -1,4 +1,5 @@
 #include <Adafruit_NeoPixel.h>
+#include "sensor.h"
 
 Adafruit_NeoPixel tira = Adafruit_NeoPixel(49, 16, NEO_GRB + NEO_KHZ800);
 

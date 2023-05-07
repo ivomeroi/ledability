@@ -38,9 +38,5 @@ void loop() {
   Serial.println("Datos recibidos: ");
   Serial.println(myData.patron);
   Serial.println(myData.color); */
-  apagarSecuencia();
-  Serial.print("Sensor: ");
-  Serial.print(digitalRead(23));
-  Serial.println();
-  delay(500);
+  
 }
