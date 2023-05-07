@@ -5,6 +5,7 @@
 #include "recibir.h"
 #include <Adafruit_NeoPixel.h>
 #include "enviar.h"
+#include "sensor.h"
 /*
 //--------------------Funciones: Determinar si es servidor------------------------
 void readMac(bool isServer){
@@ -23,11 +24,16 @@ void readMac(bool isServer){
 
 struct_message myData;
 
+
 bool recibido;
 
 void OnDataRecv(const uint8_t *macAddr, const uint8_t *incomingData, int len) {
 
     //------------- Copio la direccion MAC del emisor-------------------------
+    if(flag==false){
+      memcpy(&broadcastAddress, macAddr, sizeof(broadcastAddress));
+      flag=true;
+    
     char macStr[18];  
     Serial.print("Packet received from: ");
     snprintf(macStr, sizeof(macStr), "%02x:%02x:%02x:%02x:%02x:%02x",
@@ -42,6 +48,8 @@ void OnDataRecv(const uint8_t *macAddr, const uint8_t *incomingData, int len) {
     Serial.println();
     // Uso mi secuencia de tiras leds
     flechas(myData.patron, myData.color); 
-    
+    //------------- Estado de flag-------------------------
+    flag=true;
+    }
   } 
 
