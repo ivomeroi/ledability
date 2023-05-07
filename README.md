@@ -7,6 +7,5 @@ MAC de ESP:
 
 3 - 0C:B8:15:CB:FA:1C
 
+4 - Muerto
 
-
-El 9/5 debemos hacer la 2da entrega de esto. 
