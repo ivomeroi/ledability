@@ -9,6 +9,7 @@
 
 bool flag=false;
 //int enviado;
+int sensorinput = 23;
 
 //------------------------------------------------------------
 
@@ -24,13 +25,11 @@ void setup() {
   } else {
     Serial.println("ESP-NOW initialization OK");
   }
-    peering();
-
+    peering();  //// es realmente necesario??? me parece que no hace falta cargar esto a los slavessssss
 
     esp_now_register_recv_cb(OnDataRecv);
 
-    initIR(23);
-
+    initIR(sensorinput);
 }
 //------------------------------------------------------------
 void loop() {

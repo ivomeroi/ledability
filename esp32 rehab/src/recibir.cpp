@@ -23,15 +23,16 @@ void readMac(bool isServer){
 //--------------------Funcion de recibir-------------------------------------------
 
 struct_message myData;
-
+struct_message addressAux;	
 
 bool recibido;
 
 void OnDataRecv(const uint8_t *macAddr, const uint8_t *incomingData, int len) {
 
+    
     //------------- Copio la direccion MAC del emisor-------------------------
     if(flag==false){
-      memcpy(&broadcastAddress, macAddr, sizeof(broadcastAddress));
+      memcpy(&addressAux, macAddr, sizeof(addressAux));   /// está de más????
       flag=true;
     
     char macStr[18];  
