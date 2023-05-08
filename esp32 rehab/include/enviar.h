@@ -5,13 +5,12 @@
 //void readMac(bool isServer);
 
 
-extern uint8_t broadcastAddress[6];
+extern uint8_t broadcastAddress[2][6];
 
-extern esp_now_peer_info_t peerInfo;
-
+extern esp_now_peer_info_t peerInfo[2];
 
 void peering();
-void OnDataRecv(const uint8_t *macAddr, const uint8_t *incomingData, int len);
 
+void OnDataSent(const uint8_t *mac_addr, esp_now_send_status_t status);
 
 #endif // ENVIAR_H

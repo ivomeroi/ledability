@@ -5,15 +5,16 @@
 //void readMac(bool isServer);
 typedef struct struct_message {
   int id;
-  char patron;
-  int color;
+  char recibir;
 } struct_message;
 
-extern struct_message myData;
+extern struct_message message;
 
-extern struct_message dataSlave;
+extern struct_message esp2;
+extern struct_message esp3;
 
-extern bool recibido;
+extern struct_message boardsStruct[2];
+
 void OnDataRecv(const uint8_t *macAddr, const uint8_t *incomingData, int len);
 
 #endif // RECIBIR_H

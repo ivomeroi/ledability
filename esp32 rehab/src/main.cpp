@@ -5,7 +5,6 @@
 #include <esp_now.h>
 #include <recibir.h>
 #include <enviar.h>
-#include <sensor.h>
 
 bool flag=false;
 //int enviado;
@@ -29,14 +28,11 @@ void setup() {
 
     esp_now_register_recv_cb(OnDataRecv);
 
-    initIR(23);
 
 }
 //------------------------------------------------------------
 void loop() {
 
-  if (flag==true){
-    apagarSecuencia();
-  }
+
   
 }

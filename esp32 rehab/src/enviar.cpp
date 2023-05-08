@@ -3,25 +3,28 @@
 #include <cstring>
 #include "enviar.h"
 #include "recibir.h"
-#include "sensor.h"
-//--------------------Variables---------------------------------
-esp_now_peer_info_t peerInfo;
 
-uint8_t broadcastAddress[6]={0x0C,0xB8,0x15,0xCB,0xEE,0x00};
-                            
+//--------------------Variables---------------------------------
+esp_now_peer_info_t peerInfo[2];
+
+uint8_t broadcastAddress[2][6]={
+    {0x0C,0xB8,0x15,0xCB,0xFF,0x84},
+    {0x0C,0xB8,0x15,0xCB,0xFA,0x1C}
+};
 
 //----------------Funciones peer---------------------------------
-    void peering(){
-        // Register peer
-        memcpy(peerInfo.peer_addr,broadcastAddress, 6);
-        peerInfo.channel = 0;  
-        peerInfo.encrypt = false;
-        // Add peer        
-        if (esp_now_add_peer(&peerInfo) != ESP_OK){
-            Serial.println("Failed to add ESP");
-            return;
-        } else{
-            Serial.println("Added ESP");
+    void peering() {
+    for (int i = 0; i < 2; i++) {
+        memcpy(peerInfo[i].peer_addr, broadcastAddress[i], 6);
+        peerInfo[i].channel = 0;
+        peerInfo[i].encrypt = false;
+
+        if (esp_now_add_peer(&peerInfo[i]) != ESP_OK) {
+        Serial.println("Failed to add ESP");
+        return;
+        } else {
+        Serial.println("Added ESP");
+        }
     }
     }
 //--------------------Funcion onDatasent-------------------------------

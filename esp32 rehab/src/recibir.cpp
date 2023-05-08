@@ -5,33 +5,27 @@
 #include "recibir.h"
 #include <Adafruit_NeoPixel.h>
 #include "enviar.h"
-#include "sensor.h"
 
-struct_message myData;
+struct_message message;
+
+struct_message esp2;
+struct_message esp3;
+
+struct_message boardsStruct[2]={esp2,esp3};
 
 void OnDataRecv(const uint8_t *macAddr, const uint8_t *incomingData, int len) {
+//--------------------------------------------------------------------
+      memcpy(&broadcastAddress, macAddr, sizeof(broadcastAddress));          
+      char macStr[18];  
+      Serial.print("Packet received from: ");
+      snprintf(macStr, sizeof(macStr), "%02x:%02x:%02x:%02x:%02x:%02x",
+      macAddr[0], macAddr[1], macAddr[2], macAddr[3], macAddr[4], macAddr[5]);
+      Serial.println(macStr);
+      //---------------------------------------------------------------------
+      Serial.println("Packet received");
+      memcpy(&message, incomingData, sizeof(message));
+      boardsStruct[message.id-1].recibir = message.recibir;
 
-      //------------- Copio la direccion MAC del emisor-------------------------
-      if(flag==false){
-          //--------------------------------------------------------------------
-          memcpy(&broadcastAddress, macAddr, sizeof(broadcastAddress));          
-          char macStr[18];  
-          Serial.print("Packet received from: ");
-          snprintf(macStr, sizeof(macStr), "%02x:%02x:%02x:%02x:%02x:%02x",
-                macAddr[0], macAddr[1], macAddr[2], macAddr[3], macAddr[4], macAddr[5]);
-          Serial.println(macStr);
-          //---------------------------------------------------------------------
-          Serial.println("Packet received");
-          memcpy(&myData, incomingData, sizeof(myData));
-          //------------- Imprimo los datos recibidos----------------------------
-          Serial.println();
-          Serial.println(myData.patron);
-          Serial.println(myData.color);
-          // Uso mi secuencia de tiras leds
-          flechas(myData.patron, myData.color); 
-          //------------- Estado de flag-------------------------
-          flag=true;
-      }
-  }
+}
   
 
