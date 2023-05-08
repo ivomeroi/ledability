@@ -10,13 +10,18 @@ import android.os.Bundle;
 import android.os.ParcelUuid;
 import android.preference.PreferenceManager;
 
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,32 +35,42 @@ public class inicio1 extends AppCompatActivity {
         int i = 0;
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        if (sharedPreferences.getBoolean("mostrarinicio", true)) {
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
-                permissions[i] = Manifest.permission.BLUETOOTH_CONNECT;
-                i++;
-            }
+        setContentView(R.layout.activity_inicio1);
 
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_SCAN) != PackageManager.PERMISSION_GRANTED) {
-                permissions[i] = Manifest.permission.BLUETOOTH_SCAN;
-                i++;
-            }
 
-            if (i > 0) {
-                ActivityCompat.requestPermissions(this, permissions, 1);
-            }
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            permissions[i] = Manifest.permission.ACCESS_COARSE_LOCATION;
+            i++;
+        }
 
-            setContentView(R.layout.activity_inicio1);
-        } else {
-            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-            startActivity(intent);
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
+            permissions[i] = Manifest.permission.SEND_SMS;
+            i++;
+        }
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+            permissions[i] = Manifest.permission.BLUETOOTH_CONNECT;
+            i++;
+        }
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_SCAN) != PackageManager.PERMISSION_GRANTED) {
+            permissions[i] = Manifest.permission.BLUETOOTH_SCAN;
+            i++;
+        }
+
+        if (i > 0) {
+            ActivityCompat.requestPermissions(this, permissions, 1);
         }
     }
 
     public void continuar(View view) {
         SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(this).edit();
+        Intent intent = new Intent(this, inicio2.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        startActivity(intent);
+/*
 
         editor.putString("nombre", ((EditText) findViewById(R.id.nombre)).getText().toString());
         editor.putString("numemergencia", ((EditText) findViewById(R.id.numero)).getText().toString());
@@ -63,9 +78,7 @@ public class inicio1 extends AppCompatActivity {
 
         editor.apply();
 
-        Intent intent = new Intent(this, inicio2.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        startActivity(intent);
+
 
         BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
@@ -78,6 +91,10 @@ public class inicio1 extends AppCompatActivity {
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
+
+
+ */
+
 //        Set<BluetoothDevice> pairedDevices = mBluetoothAdapter.getBondedDevices();
 //
 //        List<String> s = new ArrayList<String>();
@@ -88,6 +105,9 @@ public class inicio1 extends AppCompatActivity {
 //            a.add(bt.getAddress());
 //            u.add((bt.getUuids())[0].getUuid().toString());
 //        }
+//        Toast.makeText(this, "A " + s, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "B " + a, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "U " + u, Toast.LENGTH_SHORT).show();
 
     }
 }

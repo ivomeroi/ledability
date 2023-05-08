@@ -49,22 +49,23 @@ import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    boolean fp;
+    int main_itemnum;
     private long mMillisUntilFinish;
     CountDownTimer countdowntimer;
     CountDownTimer assist;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
     BluetoothAdapter btadapter = BluetoothAdapter.getDefaultAdapter();
-    private static final String BLUETOOTH_ADDRESS = "00:18:E4:34:C5:45"; // Replace with your HC-05's Bluetooth address
-    private static final String BLUETOOTH_URL = "btspp://" + BLUETOOTH_ADDRESS + ":1;authenticate=false;encrypt=false;master=false";
+    //private static final String BLUETOOTH_ADDRESS = "00:18:E4:34:C5:45"; // Replace with your HC-05's Bluetooth address
+    //private static final String BLUETOOTH_URL = "btspp://" + BLUETOOTH_ADDRESS + ":1;authenticate=false;encrypt=false;master=false";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        editor = sharedPreferences.edit();
 
         setContentView(R.layout.activity_main);
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -76,14 +77,13 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        editor = sharedPreferences.edit();
 
         selector fragment = new selector();
         getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fragment).commit();
         getSupportActionBar().setTitle(getString(R.string.selector));
-        fp = true;
+
     }
+
 
     @Override
     public void onBackPressed() {
@@ -91,14 +91,18 @@ public class MainActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            if (fp) {
-                MainActivity.this.moveTaskToBack(true);
-            } else {
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new selector()).commit();
-                fp = true;
-                getSupportActionBar().setTitle(getString(R.string.selector));
-                NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-                navigationView.setCheckedItem(R.id.selector);
+            NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+            switch (main_itemnum) {
+                case 1:
+                    MainActivity.this.moveTaskToBack(true);
+                case 2:
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new selector()).commit();
+
+                    getSupportActionBar().setTitle(getString(R.string.selector));
+
+                    navigationView.setCheckedItem(R.id.selector);
+                case 3:
+                    MainActivity.this.moveTaskToBack(true);
             }
         }
     }
@@ -122,13 +126,18 @@ public class MainActivity extends AppCompatActivity
         switch (itemnum) {
             case 1:
                 fragment = new selector();
-                fp = true;
+                main_itemnum = 1;
                 title = "Selector";
                 break;
             case 2:
                 fragment = new programa();
                 title = "Programa";
-                fp = false;
+                main_itemnum = 2;
+                break;
+            case 3:
+                fragment = new ajustes();
+                title = "Ajustes";
+                main_itemnum = 3;
                 break;
         }
 

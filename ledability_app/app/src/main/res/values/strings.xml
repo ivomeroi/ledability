@@ -10,6 +10,7 @@
     <string name="fc">Frecuencia Cardíaca</string>
     <string name="latidos">Latidos</string>
     <string name="programa">Programa</string>
+    <string name="ajustes">Ajustes</string>
     <string name="ha">Historial de Alertas</string>
     <string name="sintomas">Diario de Síntomas</string>
 </resources>

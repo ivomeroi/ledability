@@ -29,6 +29,7 @@ public class inicio2 extends AppCompatActivity {
     }
 
     public void comenzar(View view) {
+        /*
         if (!btadapter.isEnabled()) {
             Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
@@ -44,8 +45,15 @@ public class inicio2 extends AppCompatActivity {
             startActivityForResult(enableBtIntent, 1);
         }
         else {
-            startService(new Intent(this, analisisecg.class));
-        }
+        */
+
+
+        Intent intent = new Intent(this, MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            startActivity(intent);
+        setContentView(R.layout.activity_main);
+            //startService(new Intent(this, analisisecg.class));
+        //}
     }
 
     @Override

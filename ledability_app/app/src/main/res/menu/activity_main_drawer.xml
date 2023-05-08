@@ -11,6 +11,10 @@
             android:id="@+id/programa"
             android:title="@string/programa"
             android:orderInCategory="2"/>
+        <item
+            android:id="@+id/ajustes"
+            android:title="@string/ajustes"
+            android:orderInCategory="2"/>
 
     </group>
 </menu>
