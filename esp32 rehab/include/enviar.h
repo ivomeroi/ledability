@@ -4,7 +4,10 @@
 #include <stdint.h>
 //void readMac(bool isServer);
 
-extern esp_now_peer_info_t peerInfo[3][6];
+
+extern uint8_t broadcastAddress[6];
+
+extern esp_now_peer_info_t peerInfo;
 
 void peering();
 void OnDataRecv(const uint8_t *macAddr, const uint8_t *incomingData, int len);
