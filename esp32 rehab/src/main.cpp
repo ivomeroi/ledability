@@ -18,6 +18,7 @@ void setup() {
 
   WiFi.mode(WIFI_STA);//Configura el modo de WiFi como estación (cliente)
   
+  defineServer();
   if (esp_now_init() != ESP_OK) {
     Serial.println("Error initializing ESP-NOW");
   return; 
@@ -38,5 +39,5 @@ void loop() {
   Serial.println("Datos recibidos: ");
   Serial.println(myData.patron);
   Serial.println(myData.color); */
-  
+  enviar();
 }

@@ -5,11 +5,16 @@
 //void readMac(bool isServer);
 
 
-extern uint8_t broadcastAddress[6];
+extern uint8_t broadcastAddress[3][6];
 
-extern esp_now_peer_info_t peerInfo;
+extern esp_now_peer_info_t peerInfo[2];
+
+extern bool isServer; //Flag que indica si este ESP es el Master y le permite acceder a ciertas funciones 
 
 void peering();
 void OnDataRecv(const uint8_t *macAddr, const uint8_t *incomingData, int len);
+void enviar();
+void defineServer();
+
 
 #endif // ENVIAR_H

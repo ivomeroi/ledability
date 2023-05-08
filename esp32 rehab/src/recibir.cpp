@@ -29,6 +29,7 @@ bool recibido;
 
 void OnDataRecv(const uint8_t *macAddr, const uint8_t *incomingData, int len) {
 
+
     //------------- Copio la direccion MAC del emisor-------------------------
     if(flag==false){
       memcpy(&broadcastAddress, macAddr, sizeof(broadcastAddress));

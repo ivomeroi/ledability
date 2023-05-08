@@ -20,7 +20,7 @@ void apagarSecuencia(){
     {
       if (flag==true)
       {
-      esp_err_t result = esp_now_send(broadcastAddress, (uint8_t *) &sensorValue, sizeof(sensorValue)); //enviar respuesta
+      esp_err_t result = esp_now_send(broadcastAddress[0], (uint8_t *) &sensorValue, sizeof(sensorValue)); //enviar respuesta
       tira.clear();
       tira.show();
       delay(1000);

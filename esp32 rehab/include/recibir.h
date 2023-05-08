@@ -10,6 +10,8 @@ typedef struct struct_message {
 } struct_message;
 
 extern struct_message myData;
+extern struct_message dataSlave;
+
 extern bool recibido;
 void OnDataRecv(const uint8_t *macAddr, const uint8_t *incomingData, int len);
 
