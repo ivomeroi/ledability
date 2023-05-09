@@ -10,7 +10,7 @@ esp_now_peer_info_t peerInfo[2];
 uint8_t broadcastAddress[2][6]={
     {0x0C,0xB8,0x15,0xCB,0xFF,0x84},
     {0x0C,0xB8,0x15,0xCB,0xFA,0x1C}
-};
+}; // añadir 0xFF 0xFF todos, envía a todos a la vez lo mismo.
 
 //----------------Funciones peer---------------------------------
     void peering() {
