@@ -7,8 +7,7 @@
 #include <enviar.h>
 #include <sensor.h>
 
-bool flag=false;
-//int enviado;
+toMaster.interact = false;
 
 //------------------------------------------------------------
 

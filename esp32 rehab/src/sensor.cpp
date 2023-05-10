@@ -9,6 +9,7 @@ int sensorPin;
 
 bool sensorValue;
 
+bool siguiente;
 
 void initIR(int Pin){
     pinMode(Pin, INPUT);
