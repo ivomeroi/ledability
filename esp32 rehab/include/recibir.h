@@ -2,10 +2,9 @@
 #define RECIBIR_H
 
 #include <stdint.h>
-//void readMac(bool isServer);
 typedef struct struct_message {
   int id;
-  char recibir;
+  bool recibir;
 } struct_message;
 
 extern struct_message message;

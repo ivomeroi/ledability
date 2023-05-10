@@ -278,7 +278,7 @@ void flechas(char direccion, int color){
             tira.setPixelColor(46, r, g, b); 
             tira.show();
             break; 
-            case 'o':
+        case 'o':
             //CERO
             tira.clear();
             tira.setPixelColor(2, r, g, b);
@@ -299,7 +299,7 @@ void flechas(char direccion, int color){
             tira.setPixelColor(46, r, g, b);   
             tira.show();
             break; 
-            case 'p':
+        case 'p':
             //CIRCULO COLORES
             tira.clear();
             tira.setPixelColor(9, r, g, b);

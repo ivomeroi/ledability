@@ -8,12 +8,14 @@
 esp_now_peer_info_t peerInfo[2];
 
 uint8_t broadcastAddress[2][6]={
-    {0x0C,0xB8,0x15,0xCB,0xFF,0x84},
-    {0x0C,0xB8,0x15,0xCB,0xFA,0x1C}
+    {0x0C,0xB8,0x15,0xCB,0xFF,0x84}, //ESP2
+    {0x0C,0xB8,0x15,0xCB,0xFA,0x1C} //ESP3
 };
 
+struct_send enviar;
+
 //----------------Funciones peer---------------------------------
-    void peering() {
+void peering() {
     for (int i = 0; i < 2; i++) {
         memcpy(peerInfo[i].peer_addr, broadcastAddress[i], 6);
         peerInfo[i].channel = 0;
@@ -33,4 +35,19 @@ void OnDataSent(const uint8_t *mac_addr, esp_now_send_status_t status) {
   Serial.print("\r\nLast Packet Send Status:\t");
   Serial.println(status == ESP_NOW_SEND_SUCCESS ? "Delivery Success" : "Delivery Fail");
 }
+//--------------------Funcion enviar----------------------------------
+void enviarMensaje() {
 
+    for(int i=0; i<2; i++){
+
+        enviar.patron=random(97,112);
+        enviar.color=random(0,3);
+
+        if(boardsStruct[i].recibir==true){
+            esp_now_send(broadcastAddress[i], (uint8_t *) &enviar, sizeof(enviar));
+            Serial.printf("envio: %d \n", boardsStruct[i].recibir);
+        }
+
+        boardsStruct[i].recibir==false;
+    }
+}
