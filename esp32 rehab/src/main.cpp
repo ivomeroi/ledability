@@ -20,12 +20,13 @@ void setup() {
   
    if (esp_now_init() != ESP_OK) {
     Serial.println("Error initializing ESP-NOW");
-  return; 
-  } else {
-    Serial.println("ESP-NOW initialization OK");
-  }
-    peering();
+    return; 
+    } else {
+      Serial.println("ESP-NOW initialization OK");
+    }
+    defID();
 
+    peering();
 
     esp_now_register_recv_cb(OnDataRecv);
 
@@ -35,8 +36,6 @@ void setup() {
 //------------------------------------------------------------
 void loop() {
 
-  if (flag==true){
-    apagarSecuencia();
-  }
+  apagarSecuencia();
   
 }

@@ -10,28 +10,22 @@
 struct_message myData;
 
 void OnDataRecv(const uint8_t *macAddr, const uint8_t *incomingData, int len) {
-
-      //------------- Copio la direccion MAC del emisor-------------------------
-      if(flag==false){
-          //--------------------------------------------------------------------
-          memcpy(&broadcastAddress, macAddr, sizeof(broadcastAddress));          
-          char macStr[18];  
-          Serial.print("Packet received from: ");
-          snprintf(macStr, sizeof(macStr), "%02x:%02x:%02x:%02x:%02x:%02x",
-                macAddr[0], macAddr[1], macAddr[2], macAddr[3], macAddr[4], macAddr[5]);
-          Serial.println(macStr);
-          //---------------------------------------------------------------------
-          Serial.println("Packet received");
-          memcpy(&myData, incomingData, sizeof(myData));
-          //------------- Imprimo los datos recibidos----------------------------
-          Serial.println();
-          Serial.println(myData.patron);
-          Serial.println(myData.color);
-          // Uso mi secuencia de tiras leds
-          flechas(myData.patron, myData.color); 
-          //------------- Estado de flag-------------------------
-          flag=true;
-      }
-  }
+    //------------- Copio la direccion MAC del emisor-------------------------
+    memcpy(&broadcastAddressMaster, macAddr, sizeof(broadcastAddressMaster));          
+        char macStr[18];  
+        Serial.print("Packet received from: ");
+        snprintf(macStr, sizeof(macStr), "%02x:%02x:%02x:%02x:%02x:%02x",
+        macAddr[0], macAddr[1], macAddr[2], macAddr[3], macAddr[4], macAddr[5]);
+        Serial.println(macStr);
+    //---------------------------------------------------------------------
+    Serial.println("Packet received");
+    memcpy(&myData, incomingData, sizeof(myData));
+    //------------- Imprimo los datos recibidos----------------------------
+    Serial.println();
+    Serial.println(myData.patron);
+    Serial.println(myData.color);
+    // Uso mi secuencia de tiras leds
+    flechas(myData.patron, myData.color); 
+    }
   
 

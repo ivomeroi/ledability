@@ -17,11 +17,12 @@ void initIR(int Pin){
 
 void apagarSecuencia(){
       sensorValue = digitalRead(sensorPin);// lee el valor del sensor
-      if (sensorValue==LOW && flag==true) {
-            esp_err_t result = esp_now_send(broadcastAddress, (uint8_t *) &sensorValue, sizeof(sensorValue)); //enviar respuesta
+      if (sensorValue==LOW) {
+        toMaster.interact = true;
+        enviar();
             tira.clear();
             tira.show();
             delay(1000);
-            flag=false;
+        toMaster.interact = false;
         } 
     } 

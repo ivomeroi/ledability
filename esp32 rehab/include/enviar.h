@@ -2,16 +2,25 @@
 #define ENVIAR_H
 
 #include <stdint.h>
-//void readMac(bool isServer);
 
+//---------------------------------------------------------------------------
+typedef struct struct_message_to_master {
+    int  id;
+    bool interact; //el bool interact reemplaza al recibido. 
+} struct_message_to_master;
 
-extern uint8_t broadcastAddress[6];
+extern struct_message_to_master toMaster;
+//---------------------------------------------------------------------------
+extern uint8_t broadcastAddressMaster[6];
+
+extern uint8_t slaveMACS[2][6];
 
 extern esp_now_peer_info_t peerInfo;
-
-
+//---------------------------------------------------------------------------
 void peering();
 void OnDataRecv(const uint8_t *macAddr, const uint8_t *incomingData, int len);
+void enviar();
+void defID();
 
 
 #endif // ENVIAR_H

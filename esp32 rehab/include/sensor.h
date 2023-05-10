@@ -5,7 +5,6 @@
 
 extern bool sensorValue; 
 extern int sensorPin;
-extern bool flag;
 
 void initIR(int sensorPin);
 void apagarSecuencia();
