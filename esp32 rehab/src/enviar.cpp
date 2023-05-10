@@ -45,7 +45,8 @@ void enviarMensaje() {
 
         if(boardsStruct[i].recibir==true){
             esp_now_send(broadcastAddress[i], (uint8_t *) &enviar, sizeof(enviar));
-            Serial.printf("envio: %d \n", boardsStruct[i].recibir);
+            Serial.println("envio a:"); 
+            Serial.print(broadcastAddress[i]);
         }
 
         boardsStruct[i].recibir==false;

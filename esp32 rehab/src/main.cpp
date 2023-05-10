@@ -6,13 +6,15 @@
 #include <recibir.h>
 #include <enviar.h>
 
-bool flag=false;
-//int enviado;
+
 
 //------------------------------------------------------------
 
 void setup() {
 
+  esp2.recibir=false;
+  esp3.recibir=false;
+  
   Serial.begin(115200); 
 
   WiFi.mode(WIFI_STA);//Configura el modo de WiFi como estación (cliente)
@@ -32,7 +34,8 @@ void setup() {
 }
 //------------------------------------------------------------
 void loop() {
-    enviarMensaje();  
+    enviarMensaje();
+      
 
   
 }
