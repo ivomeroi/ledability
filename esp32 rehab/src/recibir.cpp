@@ -25,6 +25,10 @@ void OnDataRecv(const uint8_t * mac_addr, const uint8_t *incomingData, int len) 
       Serial.printf("Board ID %u: %u bytes\n", message.id, len);
     // Update the structures with the new incoming data
     boardsStruct[message.id-1].recibir = message.recibir;
-    Serial.printf("recibio: %d \n", boardsStruct[message.id-1].recibir);
+    Serial.printf("recibio: %d \n", boardsStruct[message.id-1].recibir); 
+  //---------------------Enviar Proximos --------------------------------
+
+  enviarMensaje (mac_addr);
+
     Serial.println();
   }

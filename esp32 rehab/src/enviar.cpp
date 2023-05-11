@@ -37,24 +37,12 @@ void OnDataSent(const uint8_t *mac_addr, esp_now_send_status_t status) {
   Serial.println(status == ESP_NOW_SEND_SUCCESS ? "Delivery Success" : "Delivery Fail");
 }
 //--------------------Funcion enviar----------------------------------
-void enviarMensaje() {
+void enviarMensaje(const uint8_t *MACAddr) {
 
-    for(int i=0; i<2; i++){
+    enviar.patron=random(97,112);
+    enviar.color=random(0,3);
 
-        enviar.patron=random(97,112);
-        enviar.color=random(0,3);
+    esp_now_send(MACAddr, (uint8_t *) &enviar, sizeof(enviar));
 
-        if(boardsStruct[i].recibir=true){
-            esp_now_send(broadcastAddress[i], (uint8_t *) &enviar, sizeof(enviar));
-            Serial.print("envio a: ");
-            for (int j = 0; j < 6; j++) {
-                Serial.print(broadcastAddress[i][j], HEX);
-                if (j < 5) {
-                    Serial.print(":");
-                }
-            }
-        Serial.println();
-        boardsStruct[i].recibir=false;
-    }
-    }
+
 }
