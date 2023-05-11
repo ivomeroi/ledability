@@ -9,9 +9,10 @@
 
 struct_message myData;
 
+bool recibio; // variable que indica si recibio y no haga el loop de cambiar sin antes interactuar.
 
 void OnDataRecv(const uint8_t *macAddr, const uint8_t *incomingData, int len) {
-    if (){
+    if(recibio==false){
     //------------- Copio la direccion MAC del emisor-------------------------
     memcpy(&broadcastAddressMaster, macAddr, sizeof(broadcastAddressMaster));          
         char macStr[18];  
@@ -23,13 +24,15 @@ void OnDataRecv(const uint8_t *macAddr, const uint8_t *incomingData, int len) {
     Serial.println("Packet received");
     memcpy(&myData, incomingData, sizeof(myData));
     //------------- Imprimo los datos recibidos----------------------------
-    Serial.println();
-    Serial.println(myData.patron);
-    Serial.println(myData.color);
-    // Uso mi secuencia de tiras leds
-    flechas(myData.patron, myData.color); 
-    }
+        Serial.println();
+        Serial.println(myData.patron);
+        Serial.println(myData.color);
+    //------------------Imprimo flechas-------------------------------------
+    flechas(myData.patron, myData.color);  
+    recibio==true;
+    }   
+}
 
-    }
+    
   
 

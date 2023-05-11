@@ -7,11 +7,12 @@
 #include <enviar.h>
 #include <sensor.h>
 
-toMaster.interact = false;
 
 //------------------------------------------------------------
 
 void setup() {
+  
+  toMaster.interact = false;
 
   Serial.begin(115200); 
 

@@ -6,7 +6,6 @@
 //---------------------------------------------------------------------------
 extern bool sensorValue; 
 extern int sensorPin;
-extern bool siguiente; 
 
 //------------------------------------------------------------
 void initIR(int sensorPin);

@@ -9,15 +9,13 @@ int sensorPin;
 
 bool sensorValue;
 
-bool siguiente;
-
 void initIR(int Pin){
     pinMode(Pin, INPUT);
     sensorPin = Pin;
 }
 
 void apagarSecuencia(){
-      sensorValue = digitalRead(sensorPin);// lee el valor del sensor
+    sensorValue = digitalRead(sensorPin);// lee el valor del sensor
       if (sensorValue==LOW) {
         toMaster.interact = true;
         enviar();
