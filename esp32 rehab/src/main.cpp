@@ -25,17 +25,18 @@ void setup() {
   } else {
     Serial.println("ESP-NOW initialization OK");
   }
-    peering();
+   
+  peering();
 
 
-    esp_now_register_recv_cb(OnDataRecv);
+  esp_now_register_recv_cb(OnDataRecv);
 
 
 }
 //------------------------------------------------------------
 void loop() {
     enviarMensaje();
-      
+    delay(2000);
 
   
 }

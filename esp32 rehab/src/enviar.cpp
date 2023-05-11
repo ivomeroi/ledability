@@ -29,6 +29,7 @@ void peering() {
         }
     }
     }
+
 //--------------------Funcion onDatasent-------------------------------
 
 void OnDataSent(const uint8_t *mac_addr, esp_now_send_status_t status) {
@@ -43,12 +44,17 @@ void enviarMensaje() {
         enviar.patron=random(97,112);
         enviar.color=random(0,3);
 
-        if(boardsStruct[i].recibir==true){
+        if(boardsStruct[i].recibir=true){
             esp_now_send(broadcastAddress[i], (uint8_t *) &enviar, sizeof(enviar));
-            Serial.println("envio a:"); 
-            Serial.print(broadcastAddress[i]);
-        }
-
-        boardsStruct[i].recibir==false;
+            Serial.print("envio a: ");
+            for (int j = 0; j < 6; j++) {
+                Serial.print(broadcastAddress[i][j], HEX);
+                if (j < 5) {
+                    Serial.print(":");
+                }
+            }
+        Serial.println();
+        boardsStruct[i].recibir=false;
+    }
     }
 }
