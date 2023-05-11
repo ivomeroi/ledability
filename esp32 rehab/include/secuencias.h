@@ -8,3 +8,4 @@ extern Adafruit_NeoPixel tira;
 void flechas(char direccion, int color);
 
 #endif
+ 
