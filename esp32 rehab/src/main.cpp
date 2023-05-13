@@ -5,12 +5,13 @@
 #include <esp_now.h>
 #include <recibir.h>
 #include <enviar.h>
-
-
-
+#include <SoftwareSerial.h>
 //------------------------------------------------------------
+SoftwareSerial BTSerial(7, 6);
 
 void setup() {
+
+
 
   esp2.recibir=false;
   esp3.recibir=false;
@@ -35,5 +36,7 @@ void setup() {
 }
 //------------------------------------------------------------
 void loop() {
-  
+    if (Serial.available()) {
+    char data = Serial.read();
+    }
 }
