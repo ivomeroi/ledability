@@ -1,10 +1,9 @@
 #include <WiFi.h>
 #include <esp_now.h>
 #include <cstring>
-#include "secuencias.h"
 #include "recibir.h"
-#include <Adafruit_NeoPixel.h>
 #include "enviar.h"
+#include "hc05.h"
 
 struct_message message;
 
@@ -27,8 +26,6 @@ void OnDataRecv(const uint8_t * mac_addr, const uint8_t *incomingData, int len) 
     boardsStruct[message.id-1].recibir = message.recibir;
     Serial.printf("recibio: %d \n", boardsStruct[message.id-1].recibir); 
   //---------------------Enviar Proximos --------------------------------
-
-  enviarMensaje (mac_addr);
-
-    Serial.println();
+    counter++;
+    enviarMensaje (mac_addr);
   }

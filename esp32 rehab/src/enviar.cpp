@@ -3,6 +3,7 @@
 #include <cstring>
 #include "enviar.h"
 #include "recibir.h"
+#include "hc05.h"
 
 //--------------------Variables---------------------------------
 esp_now_peer_info_t peerInfo[2];
@@ -14,10 +15,12 @@ uint8_t broadcastAddress[2][6]={
 
 struct_send enviar;
 
+int counter;
+struct_BTmessage BTmessage;
 //----------------Funciones peer---------------------------------
-void peering() {
+void peering() { //funcion de peer que empareja el ESPmaster con los slaves. peerInfo como matriz igual a la cantidad de ESPs slaves
     for (int i = 0; i < 2; i++) {
-        memcpy(peerInfo[i].peer_addr, broadcastAddress[i], 6);
+        memcpy(peerInfo[i].peer_addr, broadcastAddress[i], 6); 
         peerInfo[i].channel = 0;
         peerInfo[i].encrypt = false;
 
@@ -28,19 +31,12 @@ void peering() {
         Serial.println("Added ESP");
         }
     }
-    }
-
-//--------------------Funcion onDatasent-------------------------------
-
-void OnDataSent(const uint8_t *mac_addr, esp_now_send_status_t status) {
-  Serial.print("\r\nLast Packet Send Status:\t");
-  Serial.println(status == ESP_NOW_SEND_SUCCESS ? "Delivery Success" : "Delivery Fail");
 }
 //--------------------Funcion enviar----------------------------------
 void enviarMensaje(const uint8_t *MACAddr) {
-
-    enviar.patron=random(97,112);
-    enviar.color=random(0,3);
+    
+    enviar.patron=patron[counter];
+    enviar.color=BTmessage.color;
 
     esp_now_send(MACAddr, (uint8_t *) &enviar, sizeof(enviar));
 

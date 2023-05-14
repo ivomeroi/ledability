@@ -1,3 +1,5 @@
+// Sirve para configurar los leds de la tira de neopixel, en otro archivo configuro cómo sería en patrones.
+
 #include <Adafruit_NeoPixel.h>
 #include "sensor.h"
 
@@ -5,7 +7,7 @@ Adafruit_NeoPixel tira = Adafruit_NeoPixel(49, 16, NEO_GRB + NEO_KHZ800);
 
 #include <Adafruit_NeoPixel.h>
 
-void flechas(char direccion, int color){
+void patrones(char direccion, int color){
     int r, g, b; 
 
     if (color == 0){

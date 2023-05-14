@@ -7,12 +7,10 @@
 #include <enviar.h>
 #include <SoftwareSerial.h>
 //------------------------------------------------------------
-SoftwareSerial BTSerial(7, 6);
 
 void setup() {
-
-
-
+  
+  int counter=0;
   esp2.recibir=false;
   esp3.recibir=false;
   
@@ -29,14 +27,9 @@ void setup() {
    
   peering();
 
-
   esp_now_register_recv_cb(OnDataRecv);
-
-
 }
 //------------------------------------------------------------
 void loop() {
-    if (Serial.available()) {
-    char data = Serial.read();
-    }
+
 }
