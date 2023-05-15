@@ -7,5 +7,7 @@ MAC de ESP:
 
 3 - 0C:B8:15:CB:FA:1C
 
-4 - Muerto
+4 - Agregar
+
+5 - Agregar
 
