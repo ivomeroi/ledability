@@ -6,6 +6,7 @@
 #include <recibir.h>
 #include <enviar.h>
 #include <SoftwareSerial.h>
+#include <hc05.h>
 //------------------------------------------------------------
 
 void setup() {
@@ -13,7 +14,8 @@ void setup() {
   int counter=0;
   esp2.recibir=false;
   esp3.recibir=false;
-  
+  patron=numeros;
+
   Serial.begin(115200); 
 
   WiFi.mode(WIFI_STA);//Configura el modo de WiFi como estación (cliente)

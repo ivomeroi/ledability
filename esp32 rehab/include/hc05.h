@@ -14,6 +14,10 @@ extern struct_BTmessage BTmessage;
 extern char* patron;
 extern int counter;
 
+extern char numeros[10];
+extern char flechas[4];
+extern char circulos[1];
+
 void beginBT(int rx, int tx);
 void readBT();
 
