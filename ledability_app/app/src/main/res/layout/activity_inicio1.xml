@@ -14,11 +14,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="80dp"
-        android:text="Bienvenid@ a \n BT Holter"
-        android:textSize="20sp"
+        android:layout_marginTop="120dp"
+        android:text="Bienvenid@ a"
+        android:textSize="35sp"
         android:textStyle="bold"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@color/colorAccent"
         android:gravity="center"/>
 
     <LinearLayout
@@ -26,49 +26,23 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp">
+        android:layout_centerHorizontal="true">
 
-    <TextView
-        android:id="@+id/instructions"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:text="Complete los siguientes datos antes de comenzar:"
-        android:textSize="16sp"
-        android:gravity="center" />
-    
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:inputType="textPersonName"
-        android:layout_below="@id/instructions"
-        android:id="@+id/nombre"
-        android:hint="Su nombre" />
 
-    <EditText
+    <ImageView
+        android:id="@+id/logo_inicio"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:id="@+id/numero"
-        android:inputType="phone"
-        android:hint="Número de teléfono de emergencia" />
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/logo"
+        android:scaleType="centerInside"
+        android:gravity="center"/>
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:inputType="textEmailAddress"
-        android:id="@+id/mail"
-        android:hint="Correo electrónico de su médico" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="100dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -77,9 +51,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:backgroundTint="@color/colorAccent"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
+            android:paddingLeft="18dp"
+            android:paddingRight="18dp"
+            android:textSize="16sp"
+            android:background="@drawable/button_background"
+            android:elevation="6dp"
+            android:stateListAnimator="@animator/button_animator"
+            android:textColor="@android:color/white"
             android:text="Continuar"
             android:onClick="continuar"/>
     </LinearLayout>

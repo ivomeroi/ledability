@@ -6,10 +6,22 @@
     android:orientation="vertical"
     tools:context="com.example.anto.holterbluetoothinteligente.graficos">
 
+    <ImageView
+        android:id="@+id/bienvenido"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/logo_frase"
+        android:paddingTop="10dp"
+        android:gravity="center"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="130dp"
         android:id="@+id/c"
         android:orientation="vertical"
         android:layout_alignParentTop="true"
@@ -22,7 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            android:text="Presione Iniciar"
+            android:text="Seleccione un programa"
             android:textSize="30sp"
             android:gravity="center" />
     </LinearLayout>
@@ -58,15 +70,36 @@
         <Button
             android:layout_width="170dp"
             android:layout_height="170dp"
-            android:text="Button 1"
+            android:text="PROGRAMA 1"
+            android:textSize="18sp"
+            android:textColor="@android:color/white"
+            android:background="@drawable/button_background"
+            android:elevation="4dp"
+            android:padding="16dp"
+            android:gravity="center"
+            android:fontFamily="sans-serif-medium"
+            android:shadowColor="#80000000"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="4"
             android:layout_row="0"
-            android:layout_column="0"
-            android:layout_gravity="center"/>
+            android:layout_column="0"/>
 
         <Button
             android:layout_width="170dp"
             android:layout_height="170dp"
-            android:text="Button 2"
+            android:text="PROGRAMA 2"
+            android:textSize="18sp"
+            android:textColor="@android:color/white"
+            android:background="@drawable/button_background"
+            android:elevation="4dp"
+            android:padding="16dp"
+            android:gravity="center"
+            android:fontFamily="sans-serif-medium"
+            android:shadowColor="#80000000"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="4"
             android:layout_row="0"
             android:layout_column="1"
             android:layout_gravity="center"/>
@@ -74,15 +107,37 @@
         <Button
             android:layout_width="170dp"
             android:layout_height="170dp"
-            android:text="Button 3"
+            android:text="PROGRAMA 3"
+            android:textSize="18sp"
+            android:textColor="@android:color/white"
+            android:background="@drawable/button_background"
+            android:elevation="4dp"
+            android:padding="16dp"
+            android:gravity="center"
+            android:fontFamily="sans-serif-medium"
+            android:shadowColor="#80000000"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="4"
             android:layout_row="1"
             android:layout_column="0"
-            android:layout_gravity="center"            />
+            android:layout_gravity="center"/>
 
         <Button
             android:layout_width="170dp"
             android:layout_height="170dp"
-            android:text="Button 4"
+            android:text="PROGRAMA 4"
+            android:textSize="18sp"
+            android:textColor="@android:color/white"
+            android:background="@drawable/button_background"
+            android:elevation="4dp"
+            android:padding="16dp"
+            android:gravity="center"
+            android:fontFamily="sans-serif-medium"
+            android:shadowColor="#80000000"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="4"
             android:layout_row="1"
             android:layout_column="1"
             android:layout_gravity="center"/>

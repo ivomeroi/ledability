@@ -21,7 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            android:text="Presione Iniciar"
+            android:text="PROGRAMA X"
             android:textSize="30sp"
             android:gravity="center" />
     </LinearLayout>
@@ -43,8 +43,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="10dp"
-            android:text="Por favor, encienda los PADS. Al encerderlos, verifique que el led ubicado en el lado superior de cada uno este encendido (como se muestra en la imagen)."
-            android:textSize="16sp"
+            android:text="Presione iniciar para comenzar la secuencia. \nAl iniciar podrá visualizar lo mostrado en los pads en tiempo real.\n Podrá pausar y/o finalizar la secuencia cuando desee"
+            android:textSize="15sp"
             android:gravity="center" />
     </LinearLayout>
 
@@ -73,40 +73,45 @@
         <GridLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
             android:rowCount="2"
             android:columnCount="2">
 
-        <Button
+        <ImageView
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:text="Button 1"
             android:layout_row="0"
             android:layout_column="0"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:src="@drawable/empty_pad"
+            android:scaleType="centerCrop"/>
 
-        <Button
+        <ImageView
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:text="Button 2"
             android:layout_row="0"
             android:layout_column="1"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:src="@drawable/empty_pad"
+            android:scaleType="centerCrop"/>
 
-        <Button
+        <ImageView
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:text="Button 3"
             android:layout_row="1"
             android:layout_column="0"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:src="@drawable/empty_pad"
+            android:scaleType="centerCrop"/>
 
-        <Button
+        <ImageView
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:text="Button 4"
             android:layout_row="1"
             android:layout_column="1"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:src="@drawable/empty_pad"
+            android:scaleType="centerCrop"/>
         </GridLayout>
     </LinearLayout>
 
@@ -123,20 +128,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/iniciarPausar"
-            android:layout_marginRight="80dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:backgroundTint="@color/colorAccent"
-            android:text="Conectar"
+            android:layout_marginRight="70dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:textSize="16sp"
+            android:background="@drawable/button_background"
+            android:elevation="6dp"
+            android:stateListAnimator="@animator/button_animator"
+            android:textColor="@android:color/white"
+            android:text="Iniciar"
             android:onClick="iniciarPausar"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/finalizar"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:backgroundTint="@color/colorAccent"
+            android:paddingLeft="18dp"
+            android:paddingRight="18dp"
+            android:textSize="16sp"
+            android:background="@drawable/button_background"
+            android:elevation="6dp"
+            android:stateListAnimator="@animator/button_animator"
+            android:textColor="@android:color/white"
             android:text="Finalizar"
             android:onClick="finalizar"/>
     </LinearLayout>
