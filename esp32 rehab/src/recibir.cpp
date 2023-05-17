@@ -7,7 +7,7 @@
 #include "enviar.h"
 #include "sensor.h"
 
-struct_message myData;
+struct_message myData; //Estructura que recibo del Master. Contiene la información de patrón y color a mostrar en las tiras.
 
 bool recibio; // variable que indica si recibio y no haga el loop de cambiar sin antes interactuar.
 
@@ -19,17 +19,17 @@ void OnDataRecv(const uint8_t *macAddr, const uint8_t *incomingData, int len) {
         Serial.print("Packet received from: ");
         snprintf(macStr, sizeof(macStr), "%02x:%02x:%02x:%02x:%02x:%02x",
         macAddr[0], macAddr[1], macAddr[2], macAddr[3], macAddr[4], macAddr[5]);
-        Serial.println(macStr);
+        Serial.println(macStr); //esta parte solo sirve para mostrar en el Monitor la dirección MAC del esp emisor. Descartarlo para el proyecto final.
     //---------------------------------------------------------------------
     Serial.println("Packet received");
-    memcpy(&myData, incomingData, sizeof(myData));
+    memcpy(&myData, incomingData, sizeof(myData)); //Copio los datos recibidos en la estructura myData 
     //------------- Imprimo los datos recibidos----------------------------
         Serial.println();
-        Serial.println(myData.patron);
+        Serial.println(myData.patron);  //esta parte se descarta para el proyecto final. Solo sirve para mostrar en el Monitor el patrón recibido.
         Serial.println(myData.color);
     //------------------Imprimo flechas-------------------------------------
-    flechas(myData.patron, myData.color);  
-    recibio==true;
+    flechas(myData.patron, myData.color);  //Pasa a mostrar el patron con el color usando la función FLECHAS
+    recibio==true;  //actualizo el valor de recibio.
     }   
 }
 

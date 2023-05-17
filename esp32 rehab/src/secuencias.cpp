@@ -1,10 +1,10 @@
 #include <Adafruit_NeoPixel.h>
 #include "sensor.h"
 
-Adafruit_NeoPixel tira = Adafruit_NeoPixel(49, 16, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel tira = Adafruit_NeoPixel(49, 16, NEO_GRB + NEO_KHZ800); //Variable que asigna al PIN 16 como Din. 49 son la cantidad de leds usados.
 
 #include <Adafruit_NeoPixel.h>
-
+//Función flechas: tiene 2 entradas, una es la dirección dependiendo del valor 'a' hasta 'p' será una secuencia determinadad. El valor de color es un entero y va desde 0 a 2 representando el RGB.
 void flechas(char direccion, int color){
     int r, g, b; 
 
@@ -371,6 +371,7 @@ void flechas(char direccion, int color){
             tira.setPixelColor(46, r, g, b);   
             tira.show();
             break; 
+            
             case 'p':
             //CIRCULO COLORES
             tira.clear();

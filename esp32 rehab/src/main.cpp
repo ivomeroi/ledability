@@ -24,6 +24,7 @@ void setup() {
     } else {
       Serial.println("ESP-NOW initialization OK");
     }
+    
     defID();
 
     peering();
