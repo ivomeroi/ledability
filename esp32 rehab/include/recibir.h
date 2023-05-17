@@ -4,7 +4,7 @@
 #include <stdint.h>
 typedef struct struct_message {
   int id;
-  bool recibir;
+  bool recibir; //es el valor de interact del ESP slave
 } struct_message;
 
 extern struct_message message;

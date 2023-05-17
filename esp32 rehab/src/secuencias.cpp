@@ -6,7 +6,7 @@
 Adafruit_NeoPixel tira = Adafruit_NeoPixel(49, 16, NEO_GRB + NEO_KHZ800);
 
 #include <Adafruit_NeoPixel.h>
-
+//Patrones contiene los patrones de la tira. Con el char selecciono qué patron mostrar y con el int el color en RGB.
 void patrones(char direccion, int color){
     int r, g, b; 
 
