@@ -36,7 +36,5 @@ void setup() {
 }
 //------------------------------------------------------------
 void loop() {
-
-  apagarSecuencia();
-  
+  apagarSecuencia();   
 }
