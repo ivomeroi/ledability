@@ -7,11 +7,13 @@
 #include <enviar.h>
 #include <SoftwareSerial.h>
 #include <hc05.h>
+#include <sensor.h>
+#include <counter.h>
 //------------------------------------------------------------
 
 void setup() {
   
-  int counter=0;
+  counter=0;
   esp2.recibir=false;
   esp3.recibir=false;
   patron=numeros;
@@ -30,8 +32,10 @@ void setup() {
   peering();
 
   esp_now_register_recv_cb(OnDataRecv);
+
+  initIR(23);
 }
 //------------------------------------------------------------
 void loop() {
-
+  apagarSecuencia();
 }

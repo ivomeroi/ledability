@@ -3,8 +3,8 @@
 #include <cstring>
 #include "enviar.h"
 #include "recibir.h"
-#include "hc05.h"
-
+#include <hc05.h>
+#include <counter.h>
 //--------------------Variables---------------------------------
 esp_now_peer_info_t peerInfo[2]; //Array de 2 para vincular los ESP slaves
 
@@ -15,9 +15,8 @@ uint8_t broadcastAddress[2][6]={
 
 struct_send enviar; //estructura de datos que contiene el patron y el color
 
-int counter; //contador para el patron. (prueba). Luego de seleccionar una modalidad
 struct_BTmessage BTmessage;
-
+int counter;
 //----------------Funciones peer---------------------------------
 void peering() { //funcion de peer que empareja el ESPmaster con los slaves. peerInfo como matriz igual a la cantidad de ESPs slaves
     for (int i = 0; i < 2; i++) {

@@ -12,7 +12,6 @@ typedef struct struct_BTmessage {
 extern SoftwareSerial BTSerial; 
 extern struct_BTmessage BTmessage;
 extern char* patron;
-extern int counter;
 
 extern char numeros[10];
 extern char flechas[4];

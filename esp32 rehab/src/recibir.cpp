@@ -4,7 +4,9 @@
 #include "recibir.h"
 #include "enviar.h"
 #include "hc05.h"
+#include "counter.h"
 
+//--------------------Variables---------------------------------
 SoftwareSerial BTSerial;  //controlar esta parte. 
 
 struct_message message;
@@ -13,7 +15,7 @@ struct_message esp2;
 struct_message esp3;
 
 struct_message boardsStruct[2]={esp2,esp3}; //Creo una subestructura de la estructura boardsStruct para cada ESP slave
-  
+
 void OnDataRecv(const uint8_t * mac_addr, const uint8_t *incomingData, int len) {
   //----------------Solo muestra la MAC---------------------------------
     char macStr[18];

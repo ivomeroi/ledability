@@ -1,10 +1,10 @@
 #include <SoftwareSerial.h>
 #include "hc05.h"
-//------------------------------------------------------------
+//-----------------Patrones-------------------------------------------
 
-char numeros[10]={'e','f','g','h','i','j','k','l','m','n'};
-char flechas[4]={'a','b','c','d'};
-char circulos[1]={'p'}; 
+char numeros[10]={'e','f','g','h','i','j','k','l','m','n'}; //Números ascendentes 0 a 9
+char flechas[4]={'a','b','c','d'}; // Flechas 
+char circulos[1]={'p'}; //Circulo
 char* patron; //Aca se guarda alguna de las siguientes secuencias de letras. Luego esto va a ser enviado a los ESPs slaves
 
 //---------------------beginBT: Inicializar modulo BT de HC----------------------------------
