@@ -1,4 +1,4 @@
-# Branch para los slaves
+# Branch para Master
 
 MACs: 
 
