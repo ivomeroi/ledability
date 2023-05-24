@@ -3,7 +3,7 @@
 //-----------------Patrones-------------------------------------------
 
 char numeros[10]={'e','f','g','h','i','j','k','l','m','n'}; //Números ascendentes 0 a 9
-char flechas[4]={'a','b','c','d'}; // Flechas 
+char flechas[4]={'a','b','c','d'}; // Flechas
 char circulos[1]={'p'}; //Circulo
 char* patron; //Aca se guarda alguna de las siguientes secuencias de letras. Luego esto va a ser enviado a los ESPs slaves
 
@@ -31,8 +31,8 @@ void writeBT(int ID, char pat, int col) { //escribir el mensaje en el HC en func
     BTSerial.write(col); //enviar el color
 }
 //--------------selectPatron: elijo la matriz para enviar----------------------------------------------
-void selectPatron(){ //con la información del patrón, guardo la secuencia a mostrar en el programa
-    switch (BTmessage.patron) {
+void selectPatron(struct_BTmessage mess){ //con la información del patrón, guardo la secuencia a mostrar en el programa
+    switch (mess.patron) {
         case 'n':
             patron=numeros;
             break;
@@ -43,4 +43,5 @@ void selectPatron(){ //con la información del patrón, guardo la secuencia a mo
             patron=circulos;
             break;
     }
+    
 }

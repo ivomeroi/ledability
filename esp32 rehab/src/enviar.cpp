@@ -16,7 +16,9 @@ uint8_t broadcastAddress[2][6]={
 struct_send enviar; //estructura de datos que contiene el patron y el color
 
 struct_BTmessage BTmessage;
+
 int counter;
+
 //----------------Funciones peer---------------------------------
 void peering() { //funcion de peer que empareja el ESPmaster con los slaves. peerInfo como matriz igual a la cantidad de ESPs slaves
     for (int i = 0; i < 2; i++) {

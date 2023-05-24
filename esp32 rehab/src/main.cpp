@@ -18,7 +18,7 @@ void setup() {
   esp3.recibir=false;
   patron=numeros;
 
-  Serial.begin(115200); 
+  Serial.begin(9600); 
 
   WiFi.mode(WIFI_STA);//Configura el modo de WiFi como estación (cliente)
   
@@ -32,10 +32,13 @@ void setup() {
   peering();
 
   esp_now_register_recv_cb(OnDataRecv);
+  
+  beginBT(16,17);
 
   initIR(23);
 }
 //------------------------------------------------------------
 void loop() {
+  readBT();
   apagarSecuencia();
 }
