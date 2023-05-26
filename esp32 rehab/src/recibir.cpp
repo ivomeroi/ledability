@@ -9,10 +9,7 @@
 
 struct_message myData; //Estructura que recibo del Master. Contiene la información de patrón y color a mostrar en las tiras.
 
-bool recibio; // variable que indica si recibio y no haga el loop de cambiar sin antes interactuar.
-
 void OnDataRecv(const uint8_t *macAddr, const uint8_t *incomingData, int len) {
-    if(recibio==false){
     //------------- Copio la direccion MAC del emisor-------------------------
     memcpy(&broadcastAddressMaster, macAddr, sizeof(broadcastAddressMaster));          
         char macStr[18];  
@@ -29,9 +26,8 @@ void OnDataRecv(const uint8_t *macAddr, const uint8_t *incomingData, int len) {
         Serial.println(myData.color);
     //------------------Imprimo flechas-------------------------------------
     flechas(myData.patron, myData.color);  //Pasa a mostrar el patron con el color usando la función FLECHAS
-    recibio==true;  //actualizo el valor de recibio.
+    
     }   
-}
 
     
   
