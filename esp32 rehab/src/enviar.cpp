@@ -38,7 +38,7 @@ void peering() { //funcion de peer que empareja el ESPmaster con los slaves. pee
 void enviarMensaje(const uint8_t *MACAddr) {
     
     enviar.patron=patron[counter]; //envio el elemento X (según en contador) del array patron
-    enviar.color=random(0,3); //cambiar a BTmessage.color con la App
+    enviar.color= BTmessage.color; //cambiar a BTmessage.color con la App
 
     esp_now_send(MACAddr, (uint8_t *) &enviar, sizeof(enviar));
 

@@ -20,5 +20,6 @@ extern char circulos[1];
 void beginBT(int rx, int tx);
 void readBT();
 void writeBT(int ID, char pat, int col);
+void selectPatron(struct_BTmessage mess);
 
 #endif // HC05_H
