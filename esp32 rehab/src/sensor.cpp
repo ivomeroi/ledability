@@ -25,7 +25,7 @@ void apagarSecuencia(){
         tira.clear();
         counter++;
         patrones(patron[counter],randomColor);
-        writeBT(0,patron[counter],randomColor);
+        writeBT(0,patron[counter],randomColor); //0 porque es la id del Master
         } 
     } 
 //La función principal es leer constantemente la entrada del sensor. Si la salida es LOW, hay un obstaculo y el la variable toMaster 
