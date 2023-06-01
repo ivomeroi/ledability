@@ -316,7 +316,6 @@ public class analisisecg extends Service
 
         public void run() {
             while (servicioactivo) {
-
                 try {
                     lectura = instream.read();
                 }

@@ -70,15 +70,6 @@ public class inicio1 extends AppCompatActivity {
         Intent intent = new Intent(this, inicio2.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(intent);
-/*
-
-        editor.putString("nombre", ((EditText) findViewById(R.id.nombre)).getText().toString());
-        editor.putString("numemergencia", ((EditText) findViewById(R.id.numero)).getText().toString());
-        editor.putString("mailmedico", ((EditText) findViewById(R.id.mail)).getText().toString());
-
-        editor.apply();
-
-
 
         BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
@@ -92,8 +83,6 @@ public class inicio1 extends AppCompatActivity {
             return;
         }
 
-
- */
 
 //        Set<BluetoothDevice> pairedDevices = mBluetoothAdapter.getBondedDevices();
 //

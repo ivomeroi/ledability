@@ -208,8 +208,6 @@ public class MainActivity extends AppCompatActivity
             }.start();
             analisisecg.sendDataToPairedDevice("A", device, MainActivity.this);
             startService(new Intent(MainActivity.this, analisisecg.class));
-
-
         }
     }
 

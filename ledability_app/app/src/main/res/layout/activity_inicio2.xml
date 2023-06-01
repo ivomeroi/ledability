@@ -39,7 +39,7 @@
             android:elevation="6dp"
             android:stateListAnimator="@animator/button_animator"
             android:text="Conectar"
-            android:onClick="comenzar" />
+            android:onClick="conectar" />
     </LinearLayout>
 
     <LinearLayout
