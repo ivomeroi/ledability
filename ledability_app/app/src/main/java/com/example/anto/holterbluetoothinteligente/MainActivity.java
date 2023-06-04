@@ -190,7 +190,7 @@ public class MainActivity extends AppCompatActivity
                         finalizar(view);
                     }
                 }.start();
-            analisisecg.sendDataToPairedDevice("A", device, MainActivity.this);
+            inicio2.sendDataToPairedDevice("A", MainActivity.this);
 
 
         } else if (boton.getText().equals("Reanudar")){
@@ -206,10 +206,12 @@ public class MainActivity extends AppCompatActivity
                     finalizar(view);
                 }
             }.start();
-            analisisecg.sendDataToPairedDevice("A", device, MainActivity.this);
+            inicio2.sendDataToPairedDevice("A", MainActivity.this);
             startService(new Intent(MainActivity.this, analisisecg.class));
         }
     }
+
+
 
     public void finalizar(View view) {
         Button boton1 = (Button) findViewById(R.id.finalizar);
@@ -242,7 +244,7 @@ public class MainActivity extends AppCompatActivity
             boton2.setVisibility(View.VISIBLE);
             boton2.setText("Conectar");
         }
-        analisisecg.sendDataToPairedDevice("Z", device, MainActivity.this);
+        inicio2.sendDataToPairedDevice("Z", MainActivity.this);
 
     }
 
