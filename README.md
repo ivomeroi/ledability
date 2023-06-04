@@ -18,4 +18,6 @@ ESP2 SLAVE  - 0C:B8:15:CB:FF:84 id=1
 
 ESP3 SLAVE - 0C:B8:15:CB:FA:1C  id=2
 
+ESP A1 SLAVE - 94:E6:86:00:EF:EC  id=3
+
 Usar HC 05 para no tener que importar las librerias de Bluetooth propias de ESP. No entra dentro de la flash.
