@@ -7,7 +7,7 @@
 #include "counter.h"
 
 //--------------------Variables---------------------------------
-SoftwareSerial BTSerial;  //controlar esta parte. 
+//SoftwareSerial BTSerial;  //controlar esta parte. 
 
 struct_message message;
 

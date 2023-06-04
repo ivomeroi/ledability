@@ -9,9 +9,20 @@ char* patron; //Aca se guarda alguna de las siguientes secuencias de letras. Lue
 
 //---------------------beginBT: Inicializar modulo BT de HC----------------------------------
 void beginBT(int rx, int tx) {
-    BTSerial.begin(9600); //tener en cuenta el BDrate
-    SoftwareSerial BTSerial(rx, tx); // RX | TX
-}
+  SoftwareSerial BTSerial(rx, tx); // RX | TX
+  delay(500);
+    Serial.println("BT connected");
+
+    BTSerial.write(random(0, 100));
+    delay(100);
+    Serial.println(random(0, 100));
+    delay(1000);
+    Serial.println(random(0, 100));
+    delay(1000);
+    Serial.println(random(0, 100));
+    delay(1000);
+    Serial.println(random(0, 100));
+  }
 //--------------selectPatron: elijo la matriz para enviar----------------------------------------------
 void selectPatron(struct_BTmessage message){ //con la información del patrón, guardo la secuencia a mostrar en el programa
     //Con la información del patron, guardo la secuencia a enviar
@@ -40,22 +51,22 @@ void selectPatron(struct_BTmessage message){ //con la información del patrón, 
     }
 }
 //-------------------readBT: leer información del HC-----------------------------------------
-void readBT() { //leer el mensaje del HC
-    while (BTSerial.available()) {
-        char incomingByte = BTSerial.read(); //Guardar el incoming data
-        if(isAlpha(incomingByte)){
-            BTmessage.patron = incomingByte; //Guardar el patron
-        } 
-        if(isDigit(incomingByte)) {
-            BTmessage.color = incomingByte; //Guardar el color
-            break;
-        } //isAlpha y isDigit leen el tipo de valor que entra. Si es un caracter es un patron, si es un numero es un color.   
-    }
-    selectPatron(BTmessage); //Seleccionar el patron a enviar
-}
+// void readBT() { //leer el mensaje del HC
+//     while (BTSerial.available()) {
+//         char incomingByte = BTSerial.read(); //Guardar el incoming data
+//         if(isAlpha(incomingByte)){
+//             BTmessage.patron = incomingByte; //Guardar el patron
+//         } 
+//         if(isDigit(incomingByte)) {
+//             BTmessage.color = incomingByte; //Guardar el color
+//             break;
+//         } //isAlpha y isDigit leen el tipo de valor que entra. Si es un caracter es un patron, si es un numero es un color.   
+//     }
+//     selectPatron(BTmessage); //Seleccionar el patron a enviar
+// }
 //-------------------writeBT: escribir información en el HC----------------------------------
-void writeBT(int ID, char pat, int col) { //escribir el mensaje en el HC en función de la ID, patron y color
-    BTSerial.write(ID); //enviar el ID
-    BTSerial.write(pat); //enviar el patron
-    BTSerial.write(col); //enviar el color
-}
+// void writeBT(int ID, char pat, int col) { //escribir el mensaje en el HC en función de la ID, patron y color
+//     BTSerial.write(ID); //enviar el ID
+//     BTSerial.write(pat); //enviar el patron
+//     BTSerial.write(col); //enviar el color
+// }
