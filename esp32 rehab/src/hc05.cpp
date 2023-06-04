@@ -24,31 +24,35 @@ void beginBT(int rx, int tx) {
     Serial.println(random(0, 100));
   }
 //--------------selectPatron: elijo la matriz para enviar----------------------------------------------
-void selectPatron(struct_BTmessage message){ //con la información del patrón, guardo la secuencia a mostrar en el programa
+void selectPatron(char message){ //con la información del patrón, guardo la secuencia a mostrar en el programa
     //Con la información del patron, guardo la secuencia a enviar
-    switch (message.patron) {
+    switch (message) {
         case 'n':
-            patron=numeros;
+        Serial.println("n");
+            //patron=numeros;
             break;
         case 'f':
-            patron=flechas;
+        Serial.println("f");
+            //patron=flechas;
             break;
         case 'c':
-            patron=circulos;
+        Serial.println("c");
+            //patron=circulos;
             break;
     }   
     //Con la información del color, guardo el valor a enviar
-    switch (message.color) {
-        case 'r':
-            message.color=0;
-            break;
-        case 'g':
-            message.color=1;
-            break;
-        case 'b':
-            message.color=2;
-            break;
-    }
+    // //* switch (message.color) {
+    //     case 'r':
+    //         message.color=0;
+    //         break;
+    //     case 'g':
+    //         message.color=1;
+    //         break;
+    //     case 'b':
+    //         message.color=2;
+    //         break;
+    // } 
+    // * //
 }
 //-------------------readBT: leer información del HC-----------------------------------------
 // void readBT() { //leer el mensaje del HC

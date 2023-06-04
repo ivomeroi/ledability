@@ -28,34 +28,32 @@ void setup() {
   } else {
     Serial.println("ESP-NOW initialization OK");
   }
-   
-  //peering();
-
-  //esp_now_register_recv_cb(OnDataRecv);
   
-// -----
-  
-  
-  
-  Serial.println("Bluetooth Device is Ready to Pair");
-  
-  delay(1000);
+  // ---Register peer---
+  peering();
+  // ---Register callback---
+  esp_now_register_recv_cb(OnDataRecv);
   
 // -------------
-  //initIR(23);
+//  Serial.println("Bluetooth Device is Ready to Pair");  
+// -------------
+  initIR(23);
 }
 
 //------------------------------------------------------------
 void loop() {
   if(BTSerial.available()){
-    //delay(10); //Delay para que se complete el mensaje (no se si es necesario
-    char Mensaje = BTSerial.read();
-    if(Mensaje=='A'){
-      for(int i=0;i<10;i++){
-        Serial.println('1');
-      
-      }
+    delay(10); 
+    char meessage=BTSerial.read();
+    delay(100);
+    if (meessage=='f'){
+      Serial.print(0);
+      Serial.print('f');
+      Serial.print(0);
+      Serial.print('\n');
     }
   }
+
+
 }
    
