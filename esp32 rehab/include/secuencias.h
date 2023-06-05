@@ -5,6 +5,6 @@
 
 extern Adafruit_NeoPixel tira;
 
-void flechas(char direccion, int color);
+void patrones(char direccion, int color);
 
 #endif

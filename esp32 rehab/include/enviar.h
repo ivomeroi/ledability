@@ -13,7 +13,7 @@ extern struct_message_to_master toMaster;
 //---------------------------------------------------------------------------
 extern uint8_t broadcastAddressMaster[6];
 
-extern uint8_t slaveMACS[2][6];
+extern uint8_t slaveMACS[3][6];
 
 extern esp_now_peer_info_t peerInfo;
 //---------------------------------------------------------------------------

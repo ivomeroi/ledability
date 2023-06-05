@@ -8,31 +8,28 @@
 #include <sensor.h>
 
 
-//------------------------------------------------------------
+//--------------Set-Up----------------------------------------
 
 void setup() {
-  
+//----- Iniciar Variables------------------------------------  
   toMaster.interact = false;
 
   Serial.begin(115200); 
-
+//----- Iniciar WiFi------------------------------------------
   WiFi.mode(WIFI_STA);//Configura el modo de WiFi como estación (cliente)
   
    if (esp_now_init() != ESP_OK) {
     Serial.println("Error initializing ESP-NOW");
     return; 
-    } else {
-      Serial.println("ESP-NOW initialization OK");
-    }
-    
+}
+//--Definición de ID------------------------------------------
     defID();
-
+//----- Emparejar---------------------------------------------
     peering();
-
+//----- Callbacks de Recibir-----------------------------------
     esp_now_register_recv_cb(OnDataRecv);
-
+//----- Iniciar IR --------------------------------------------
     initIR(23);
-
 }
 //------------------------------------------------------------
 void loop() {

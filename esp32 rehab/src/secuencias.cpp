@@ -1,11 +1,13 @@
+// Sirve para configurar los leds de la tira de neopixel, en otro archivo configuro cómo sería en patrones.
+
 #include <Adafruit_NeoPixel.h>
 #include "sensor.h"
 
-Adafruit_NeoPixel tira = Adafruit_NeoPixel(49, 16, NEO_GRB + NEO_KHZ800); //Variable que asigna al PIN 16 como Din. 49 son la cantidad de leds usados.
+Adafruit_NeoPixel tira = Adafruit_NeoPixel(49, 16, NEO_GRB + NEO_KHZ800);
 
 #include <Adafruit_NeoPixel.h>
-//Función flechas: tiene 2 entradas, una es la dirección dependiendo del valor 'a' hasta 'p' será una secuencia determinadad. El valor de color es un entero y va desde 0 a 2 representando el RGB.
-void flechas(char direccion, int color){
+//Patrones contiene los patrones de la tira. Con el char selecciono qué patron mostrar y con el int el color en RGB.
+void patrones(char direccion, int color){
     int r, g, b; 
 
     if (color == 0){
@@ -43,6 +45,7 @@ void flechas(char direccion, int color){
             break;
 
         case 'b':
+            //ABAJO
             tira.clear();
             tira.setPixelColor(3, r, g, b);
             tira.setPixelColor(10, r, g, b);
@@ -110,13 +113,12 @@ void flechas(char direccion, int color){
             tira.setPixelColor(23, r, g, b);
             tira.setPixelColor(24, r, g, b);
             tira.setPixelColor(31, r, g, b);
-            tira.setPixelColor(32, r, g, b);
             tira.setPixelColor(37, r, g, b);
             tira.setPixelColor(38, r, g, b);
             tira.setPixelColor(44, r, g, b);
             tira.setPixelColor(45, r, g, b);
-            tira.setPixelColor(46, r, g, b);
-            tira.setPixelColor(47, r, g, b);           
+            tira.setPixelColor(46, r, g, b);  
+            tira.setPixelColor(47, r, g, b);         
             tira.show();
             break;
         case 'f':
@@ -127,15 +129,15 @@ void flechas(char direccion, int color){
             tira.setPixelColor(4, r, g, b);
             tira.setPixelColor(8, r, g, b);
             tira.setPixelColor(9, r, g, b);
-            tira.setPixelColor(10, r, g, b);
             tira.setPixelColor(11, r, g, b);
+            tira.setPixelColor(12, r, g, b);
             tira.setPixelColor(18, r, g, b);
             tira.setPixelColor(19, r, g, b);
             tira.setPixelColor(23, r, g, b);
             tira.setPixelColor(24, r, g, b);
             tira.setPixelColor(30, r, g, b);
             tira.setPixelColor(31, r, g, b);
-            tira.setPixelColor(39, r, g, b);
+            tira.setPixelColor(37, r, g, b);
             tira.setPixelColor(40, r, g, b);
             tira.setPixelColor(43, r, g, b);
             tira.setPixelColor(44, r, g, b);
@@ -172,19 +174,26 @@ void flechas(char direccion, int color){
             //CUATRO
             tira.clear();
             tira.setPixelColor(4, r, g, b);
+            tira.setPixelColor(5, r, g, b);
+            tira.setPixelColor(8, r, g, b);
             tira.setPixelColor(9, r, g, b);
             tira.setPixelColor(10, r, g, b);
             tira.setPixelColor(16, r, g, b);
             tira.setPixelColor(18, r, g, b);
+            tira.setPixelColor(19, r, g, b);
+            tira.setPixelColor(22, r, g, b);
             tira.setPixelColor(23, r, g, b);
+            tira.setPixelColor(26, r, g, b);
             tira.setPixelColor(29, r, g, b);
             tira.setPixelColor(30, r, g, b);
             tira.setPixelColor(31, r, g, b);
             tira.setPixelColor(32, r, g, b);
+            tira.setPixelColor(33, r, g, b);
+            tira.setPixelColor(36, r, g, b);
             tira.setPixelColor(37, r, g, b);
             tira.setPixelColor(45, r, g, b);
             tira.setPixelColor(46, r, g, b);
-            tira.setPixelColor(47, r, g, b);     
+            tira.setPixelColor(47, r, g, b);
             tira.show();
             break; 
         case 'i':
@@ -203,7 +212,7 @@ void flechas(char direccion, int color){
             tira.setPixelColor(18, r, g, b);
             tira.setPixelColor(22, r, g, b);
             tira.setPixelColor(23, r, g, b);
-            tira.setPixelColor(32, r, g, b);
+            tira.setPixelColor(32, r, g, b);  
             tira.setPixelColor(33, r, g, b);
             tira.setPixelColor(36, r, g, b);
             tira.setPixelColor(37, r, g, b);
@@ -236,15 +245,15 @@ void flechas(char direccion, int color){
             tira.setPixelColor(33, r, g, b);
             tira.setPixelColor(36, r, g, b);
             tira.setPixelColor(37, r, g, b);
-            tira.setPixelColor(39, r, g, b); 
-            tira.setPixelColor(40, r, g, b);
+            tira.setPixelColor(39, r, g, b);
+            tira.setPixelColor(40, r, g, b); 
             tira.setPixelColor(44, r, g, b);
             tira.setPixelColor(45, r, g, b); 
             tira.setPixelColor(46, r, g, b);   
             tira.show();
             break;
         case 'k':
-            //SIETE
+            //Siete
             tira.clear();
             tira.setPixelColor(1, r, g, b);
             tira.setPixelColor(2, r, g, b);
@@ -254,16 +263,17 @@ void flechas(char direccion, int color){
             tira.setPixelColor(8, r, g, b);
             tira.setPixelColor(9, r, g, b);
             tira.setPixelColor(12, r, g, b);
-            tira.setPixelColor(18, r, g, b);
-            tira.setPixelColor(19, r, g, b);
+            tira.setPixelColor(16, r, g, b);
             tira.setPixelColor(23, r, g, b);
             tira.setPixelColor(24, r, g, b);
+            tira.setPixelColor(25, r, g, b);
             tira.setPixelColor(30, r, g, b);
-            tira.setPixelColor(31, r, g, b);
-            tira.setPixelColor(38, r, g, b);
+            tira.setPixelColor(32, r, g, b);
+            tira.setPixelColor(37, r, g, b);
             tira.setPixelColor(39, r, g, b); 
             tira.setPixelColor(44, r, g, b);
             tira.setPixelColor(45, r, g, b); 
+            tira.setPixelColor(46, r, g, b);   
             tira.show();
             break;
         case 'l':
@@ -288,7 +298,7 @@ void flechas(char direccion, int color){
             tira.setPixelColor(32, r, g, b);
             tira.setPixelColor(33, r, g, b);
             tira.setPixelColor(36, r, g, b);
-            tira.setPixelColor(37, r, g, b);            
+            tira.setPixelColor(37, r, g, b);
             tira.setPixelColor(39, r, g, b);
             tira.setPixelColor(40, r, g, b);
             tira.setPixelColor(44, r, g, b);
@@ -302,28 +312,6 @@ void flechas(char direccion, int color){
             tira.setPixelColor(2, r, g, b);
             tira.setPixelColor(3, r, g, b);
             tira.setPixelColor(4, r, g, b);
-            tira.setPixelColor(9, r, g, b);
-            tira.setPixelColor(11, r, g, b);
-            tira.setPixelColor(16, r, g, b);
-            tira.setPixelColor(18, r, g, b);
-            tira.setPixelColor(23, r, g, b);
-            tira.setPixelColor(24, r, g, b);
-            tira.setPixelColor(25, r, g, b);
-            tira.setPixelColor(30, r, g, b);
-            tira.setPixelColor(32, r, g, b); 
-            tira.setPixelColor(37, r, g, b);
-            tira.setPixelColor(39, r, g, b); 
-            tira.setPixelColor(44, r, g, b); 
-            tira.setPixelColor(45, r, g, b); 
-            tira.setPixelColor(46, r, g, b);   
-            tira.show();
-            break;     
-        case 'n':
-            //NUEVE
-            tira.clear();
-            tira.setPixelColor(2, r, g, b);
-            tira.setPixelColor(3, r, g, b);
-            tira.setPixelColor(4, r, g, b);
             tira.setPixelColor(8, r, g, b);
             tira.setPixelColor(9, r, g, b);
             tira.setPixelColor(11, r, g, b);
@@ -332,21 +320,21 @@ void flechas(char direccion, int color){
             tira.setPixelColor(16, r, g, b);
             tira.setPixelColor(18, r, g, b);
             tira.setPixelColor(19, r, g, b);
-            tira.setPixelColor(22, r, g, b);
+            tira.setPixelColor(22, r, g, b);    
             tira.setPixelColor(23, r, g, b);
             tira.setPixelColor(24, r, g, b);
             tira.setPixelColor(25, r, g, b);
             tira.setPixelColor(26, r, g, b);
-            tira.setPixelColor(32, r, g, b);
+            tira.setPixelColor(32, r, g, b); 
             tira.setPixelColor(33, r, g, b);
-            tira.setPixelColor(36, r, g, b); 
+            tira.setPixelColor(36, r, g, b);
             tira.setPixelColor(37, r, g, b);
             tira.setPixelColor(44, r, g, b);
-            tira.setPixelColor(45, r, g, b);
-            tira.setPixelColor(46, r, g, b); 
+            tira.setPixelColor(45, r, g, b); 
+            tira.setPixelColor(46, r, g, b);
             tira.show();
-            break; 
-            case 'o':
+            break;     
+        case 'n':
             //CERO
             tira.clear();
             tira.setPixelColor(2, r, g, b);
@@ -362,18 +350,18 @@ void flechas(char direccion, int color){
             tira.setPixelColor(26, r, g, b);
             tira.setPixelColor(29, r, g, b);
             tira.setPixelColor(33, r, g, b);
-            tira.setPixelColor(36, r, g, b); 
+            tira.setPixelColor(36, r, g, b);
             tira.setPixelColor(37, r, g, b);
             tira.setPixelColor(39, r, g, b);
-            tira.setPixelColor(40, r, g, b); 
-            tira.setPixelColor(44, r, g, b); 
-            tira.setPixelColor(45, r, g, b); 
-            tira.setPixelColor(46, r, g, b);   
+            tira.setPixelColor(40, r, g, b);
+            tira.setPixelColor(44, r, g, b);
+            tira.setPixelColor(45, r, g, b);
+            tira.setPixelColor(46, r, g, b);
             tira.show();
+
             break; 
-            
-            case 'p':
-            //CIRCULO COLORES
+        case 'o':
+            //CIRCULOS
             tira.clear();
             tira.setPixelColor(2, r, g, b);
             tira.setPixelColor(3, r, g, b);
@@ -393,27 +381,26 @@ void flechas(char direccion, int color){
             tira.setPixelColor(21, r, g, b);
             tira.setPixelColor(22, r, g, b);
             tira.setPixelColor(23, r, g, b);
-            tira.setPixelColor(24, r, g, b); 
+            tira.setPixelColor(24, r, g, b);
             tira.setPixelColor(25, r, g, b);
             tira.setPixelColor(26, r, g, b);
             tira.setPixelColor(27, r, g, b);
-            tira.setPixelColor(28, r, g, b); 
-            tira.setPixelColor(29, r, g, b); 
-            tira.setPixelColor(30, r, g, b); 
-            tira.setPixelColor(31, r, g, b);             
-            tira.setPixelColor(32, r, g, b); 
+            tira.setPixelColor(28, r, g, b);
+            tira.setPixelColor(29, r, g, b);
+            tira.setPixelColor(30, r, g, b);
+            tira.setPixelColor(31, r, g, b);
+            tira.setPixelColor(32, r, g, b);
             tira.setPixelColor(33, r, g, b);
             tira.setPixelColor(34, r, g, b);
-            tira.setPixelColor(36, r, g, b);
-            tira.setPixelColor(37, r, g, b); 
-            tira.setPixelColor(38, r, g, b); 
+            tira.setPixelColor(36, r, g, b); 
+            tira.setPixelColor(37, r, g, b);
+            tira.setPixelColor(38, r, g, b);
             tira.setPixelColor(39, r, g, b); 
             tira.setPixelColor(40, r, g, b);
-            tira.setPixelColor(44, r, g, b);
-            tira.setPixelColor(45, r, g, b);
-            tira.setPixelColor(46, r, g, b);  
+            tira.setPixelColor(44, r, g, b); 
+            tira.setPixelColor(45, r, g, b); 
+            tira.setPixelColor(46, r, g, b);   
             tira.show();
             break; 
-            }
-    
-    };
+    }
+}

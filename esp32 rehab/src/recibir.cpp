@@ -25,7 +25,7 @@ void OnDataRecv(const uint8_t *macAddr, const uint8_t *incomingData, int len) {
         Serial.println(myData.patron);  //esta parte se descarta para el proyecto final. Solo sirve para mostrar en el Monitor el patrón recibido.
         Serial.println(myData.color);
     //------------------Imprimo flechas-------------------------------------
-    flechas(myData.patron, myData.color);  //Pasa a mostrar el patron con el color usando la función FLECHAS
+    patrones(myData.patron, myData.color);  //Pasa a mostrar el patron con el color usando la función FLECHAS
     
     }   
 
