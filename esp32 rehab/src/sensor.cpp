@@ -21,11 +21,12 @@ void initIR(int Pin){
 void apagarSecuencia(){
     sensorValue = digitalRead(sensorPin);// lee el valor del sensor
       if (sensorValue==LOW) {
-        int randomColor = random(0,3);
         tira.clear();
         counter++;
-        patrones(patron[counter],randomColor);
-//        writeBT(0,patron[counter],randomColor); //0 porque es la id del Master
+        patrones(patron[counter],BTmessage.color);
+        Serial.print(patron[counter]);
+        Serial.print(BTmessage.color);
+        Serial.print('\n');
         } 
     } 
 //La función principal es leer constantemente la entrada del sensor. Si la salida es LOW, hay un obstaculo y el la variable toMaster 

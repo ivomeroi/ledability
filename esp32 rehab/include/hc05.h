@@ -17,7 +17,7 @@ extern char numeros[10];
 extern char flechas[4];
 extern char circulos[1];
 
-void beginBT(int rx, int tx);
+void listening_bt();
 void readBT();
 void selectPatron(char message);
 

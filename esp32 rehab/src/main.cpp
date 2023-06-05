@@ -9,51 +9,36 @@
 #include <hc05.h>
 #include <sensor.h>
 #include <counter.h>
-SoftwareSerial BTSerial(3); // RX | TX
+SoftwareSerial BTSerial(3); 
 //------------------------------------------------------------
 void setup() {
   
+// --- Iniciar Variables ---
   counter=0;
   esp2.recibir=false;
   esp3.recibir=false;
+  esp4.recibir=false;
   patron=numeros;
-
+// --- Iniciar Serial ---
   Serial.begin(9600); 
   BTSerial.begin(9600);
-  WiFi.mode(WIFI_STA);//Configura el modo de WiFi como estación (cliente)
-
+// --- Iniciar WiFi ---
+  WiFi.mode(WIFI_STA);
+// --- ESP NOW ---
   if (esp_now_init() != ESP_OK) {
-    Serial.println("Error initializing ESP-NOW");
   return; 
-  } else {
-    Serial.println("ESP-NOW initialization OK");
   }
-  
-  // ---Register peer---
+//--- Peering: Emparejamiento ---
   peering();
-  // ---Register callback---
+//--- Call back de Recibir ---
   esp_now_register_recv_cb(OnDataRecv);
-  
-// -------------
-//  Serial.println("Bluetooth Device is Ready to Pair");  
-// -------------
+//--- Init IR ---
   initIR(23);
 }
 
-//------------------------------------------------------------
+//--------------Fin del Setup-------------------------------------
 void loop() {
-  if(BTSerial.available()){
-    delay(10); 
-    char meessage=BTSerial.read();
-    delay(100);
-    if (meessage=='f'){
-      Serial.print(0);
-      Serial.print('f');
-      Serial.print(0);
-      Serial.print('\n');
-    }
-  }
-
+  listening_bt();
 
 }
    
