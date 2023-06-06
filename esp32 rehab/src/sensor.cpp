@@ -24,6 +24,7 @@ void apagarSecuencia(){
         tira.clear();
         counter++;
         patrones(patron[counter],BTmessage.color);
+        Serial.print('1');
         Serial.print(patron[counter]);
         Serial.print(BTmessage.color);
         Serial.print('\n');

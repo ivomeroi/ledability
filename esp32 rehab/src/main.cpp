@@ -39,6 +39,8 @@ void setup() {
 //--------------Fin del Setup-------------------------------------
 void loop() {
   listening_bt();
+  delay(100);
+  apagarSecuencia();
 
 }
    
