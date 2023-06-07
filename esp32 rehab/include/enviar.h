@@ -2,7 +2,7 @@
 #define ENVIAR_H
 
 #include <stdint.h>
-
+#include <esp_now.h>
 
 typedef struct struct_send {
   char patron;  
