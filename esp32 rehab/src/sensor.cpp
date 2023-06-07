@@ -1,15 +1,14 @@
 #include <Arduino.h>
 #include <secuencias.h>
-#include <sensor.h>
 #include <WiFi.h>
 #include <esp_now.h>
-#include <enviar.h>
-#include <hc05.h>
-#include <counter.h>
+#include "counter.h"
+#include "sensor.h"
+
 
 //-------------------------------------------------------------
-int sensorPin; //Variable que guarda el PIN de la entrada del sensor.
 bool sensorValue; //Variable que guarda el valor de la entrada del sensor
+int sensorPin; //Variable que guarda el PIN de la entrada del sensor.
 //-------------------------------------------------------------
 void initIR(int Pin){
     pinMode(Pin, INPUT);

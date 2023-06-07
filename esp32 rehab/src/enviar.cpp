@@ -1,10 +1,10 @@
 #include <WiFi.h>
 #include <esp_now.h>
 #include <cstring>
+#include "counter.h"
+#include "hc05.h"
 #include "enviar.h"
-#include "recibir.h"
-#include <hc05.h>
-#include <counter.h>
+
 //--------------------Variables---------------------------------
 esp_now_peer_info_t peerInfo[3]; // Array de 2 para vincular los ESP slaves
 
@@ -14,11 +14,6 @@ uint8_t broadcastAddress[3][6] = {
     {0x94, 0xE6, 0x86, 0x00, 0xEF, 0xEC}  // ESP4
 };
 
-struct_send enviar; // estructura de datos que contiene el patron y el color
-
-struct_BTmessage BTmessage;
-
-int counter;
 
 //----------------Funciones peer---------------------------------
 void peering()
@@ -34,7 +29,7 @@ void peering()
         }
     }
 }
-void checkID(const uint8_t *MACAddr)
+int checkID(const uint8_t *MACAddr)
 {
     for (int i = 0; i < 3; i++)
     {

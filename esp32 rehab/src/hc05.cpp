@@ -1,12 +1,14 @@
 #include <SoftwareSerial.h>
 #include "hc05.h"
 #include <string>
+#include <esp_now.h>
 #include "enviar.h"
+#include "counter.h"
+#include "recibir.h"
 //-----------------Patrones------------------------------------
 char numeros[10]={'e','f','g','h','i','j','k','l','m','n'}; //Números ascendentes 0 a 9
 char flechas[4]={'a','b','c','d'}; // Flechas
 char circulos[1]={'o'}; //Circulo
-char* patron; //Patron a enviar
 
 //--------------selectPatron: elijo la matriz para enviar------
 
@@ -17,6 +19,9 @@ void listening_bt() {
     delay(10);
 
     int messageInt = BTSerial.read(); // Read the character as an integer
+    if(messageInt != -1) {
+      
+    }
     std::string message(2, static_cast<char>(messageInt)); // Convert integer to string    
     simbolo = message[0];
     color = message[1];
@@ -50,10 +55,4 @@ void listening_bt() {
 }
 
 
-//------------writeBT: escribir información en el HC-----------
-void writeBT(int ID, char pat, int col) { //escribir el mensaje en el HC en función de la ID, patron y color
-    Serial.write(ID); //enviar el ID
-    Serial.write(pat); //enviar el patron
-    Serial.write(col); //enviar el color
-    Serial.print('\n');
-}
+

@@ -3,12 +3,13 @@
 #include <Adafruit_NeoPixel.h>
 #include <WiFi.h>
 #include <esp_now.h>
-#include <recibir.h>
-#include <enviar.h>
 #include <SoftwareSerial.h>
-#include <hc05.h>
-#include <sensor.h>
-#include <counter.h>
+#include "counter.h"
+#include "enviar.h"
+#include "hc05.h"
+#include "recibir.h"
+#include "sensor.h"
+
 SoftwareSerial BTSerial(3); 
 //------------------------------------------------------------
 void setup() {
@@ -40,7 +41,7 @@ void setup() {
 void loop() {
   listening_bt();
   delay(100);
-  apagarSecuencia();
+  //apagarSecuencia();
 
 }
   

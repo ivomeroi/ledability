@@ -1,21 +1,13 @@
 #include <WiFi.h>
 #include <esp_now.h>
 #include <cstring>
-#include "recibir.h"
-#include "enviar.h"
-#include "hc05.h"
 #include "counter.h"
+#include "enviar.h"
+#include "recibir.h"
 
 //--------------------Variables---------------------------------
 //SoftwareSerial BTSerial;  //controlar esta parte. 
 
-struct_message message;
-
-struct_message esp2;
-struct_message esp3;
-struct_message esp4;
-
-struct_message boardsStruct[3]={esp2,esp3,esp4}; //Creo una subestructura de la estructura boardsStruct para cada ESP slave
 
 void OnDataRecv(const uint8_t * mac_addr, const uint8_t *incomingData, int len) {
   //----------------Solo muestra la MAC---------------------------------
@@ -27,10 +19,11 @@ void OnDataRecv(const uint8_t * mac_addr, const uint8_t *incomingData, int len) 
     boardsStruct[message.id-1].recibir = message.recibir; 
   //---------------------Enviar Proximos --------------------------------
     enviarMensaje(mac_addr);
+
+    //writeBT(checkID(mac_addr), patron[counter], BTmessage.color);
   //--------------------Control de Counter--------------------------------
+    counter++; //actualizo el valor del contador para que el proximo valor a enviar.
     if (counter==strlen(patron)){ //controlo el contador. Si llega al final del array, lo reinicio y se repite el patron.
       counter=0;
-    } else {
-      counter++;//actualizo el valor del contador para que el proximo valor a enviar.
-    }
+    } 
 }
