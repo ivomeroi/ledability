@@ -4,7 +4,7 @@
 #include <stdint.h>
 //---------------------------------------------------------------------------
 typedef struct struct_message {
-  char patron;
+  int patron;
   int color;
 } struct_message;
 

@@ -25,7 +25,7 @@ void patrones(char direccion, int color){
     }
     tira.begin();
     switch(direccion){
-        case 'a':
+        case 0:
             //ARRIBA
             tira.clear();
             tira.setPixelColor(3, r, g, b);
@@ -44,7 +44,7 @@ void patrones(char direccion, int color){
             tira.show();
             break;
 
-        case 'b':
+        case 1:
             //ABAJO
             tira.clear();
             tira.setPixelColor(3, r, g, b);
@@ -63,7 +63,7 @@ void patrones(char direccion, int color){
             tira.show();
             break;
 
-        case 'c':
+        case 2:
             //DERECHA
             tira.clear();
             tira.setPixelColor(3, r, g, b);
@@ -81,7 +81,7 @@ void patrones(char direccion, int color){
             tira.setPixelColor(45, r, g, b);            
             tira.show();
             break;
-        case 'd':
+        case 3:
             //IZQUIERDA
             tira.clear();
             tira.setPixelColor(3, r, g, b);
@@ -99,7 +99,7 @@ void patrones(char direccion, int color){
             tira.setPixelColor(45, r, g, b);            
             tira.show();
             break;
-        case 'e':
+        case 4:
             //UNO
             tira.clear();
             tira.setPixelColor(3, r, g, b);
@@ -121,7 +121,7 @@ void patrones(char direccion, int color){
             tira.setPixelColor(47, r, g, b);         
             tira.show();
             break;
-        case 'f':
+        case 5:
             //DOS
             tira.clear();
             tira.setPixelColor(2, r, g, b);
@@ -146,7 +146,7 @@ void patrones(char direccion, int color){
             tira.setPixelColor(47, r, g, b);       
             tira.show();
             break;
-        case 'g':
+        case 6:
             //TRES
             tira.clear();
             tira.setPixelColor(1, r, g, b);
@@ -170,7 +170,7 @@ void patrones(char direccion, int color){
             tira.setPixelColor(46, r, g, b);       
             tira.show();
             break;  
-        case 'h':
+        case 7:
             //CUATRO
             tira.clear();
             tira.setPixelColor(4, r, g, b);
@@ -196,7 +196,7 @@ void patrones(char direccion, int color){
             tira.setPixelColor(47, r, g, b);
             tira.show();
             break; 
-        case 'i':
+        case 8:
             //CINCO
             tira.clear();
             tira.setPixelColor(1, r, g, b);
@@ -223,7 +223,7 @@ void patrones(char direccion, int color){
             tira.setPixelColor(46, r, g, b);
             tira.show();
             break;
-        case 'j':
+        case 9:
             //SEIS
             tira.clear();
             tira.setPixelColor(2, r, g, b);
@@ -252,7 +252,7 @@ void patrones(char direccion, int color){
             tira.setPixelColor(46, r, g, b);   
             tira.show();
             break;
-        case 'k':
+        case 10:
             //Siete
             tira.clear();
             tira.setPixelColor(1, r, g, b);
@@ -276,7 +276,7 @@ void patrones(char direccion, int color){
             tira.setPixelColor(46, r, g, b);   
             tira.show();
             break;
-        case 'l':
+        case 11:
             //OCHO
             tira.clear();
             tira.setPixelColor(2, r, g, b);
@@ -306,7 +306,7 @@ void patrones(char direccion, int color){
             tira.setPixelColor(46, r, g, b);
             tira.show();
             break;  
-        case 'm':
+        case 12:
             //NUEVE
             tira.clear();
             tira.setPixelColor(2, r, g, b);
@@ -334,7 +334,7 @@ void patrones(char direccion, int color){
             tira.setPixelColor(46, r, g, b);
             tira.show();
             break;     
-        case 'n':
+        case 13:
             //CERO
             tira.clear();
             tira.setPixelColor(2, r, g, b);
@@ -360,7 +360,7 @@ void patrones(char direccion, int color){
             tira.show();
 
             break; 
-        case 'o':
+        case 14:
             //CIRCULOS
             tira.clear();
             tira.setPixelColor(2, r, g, b);

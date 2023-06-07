@@ -13,13 +13,11 @@
 void setup() {
 //----- Iniciar Variables------------------------------------  
   toMaster.interact = false;
-
-  Serial.begin(115200); 
+  Serial.begin(9600); 
 //----- Iniciar WiFi------------------------------------------
   WiFi.mode(WIFI_STA);//Configura el modo de WiFi como estación (cliente)
   
    if (esp_now_init() != ESP_OK) {
-    Serial.println("Error initializing ESP-NOW");
     return; 
 }
 //--Definición de ID------------------------------------------
