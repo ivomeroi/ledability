@@ -1,6 +1,7 @@
 #include <SoftwareSerial.h>
 #include "hc05.h"
 #include <string>
+#include "enviar.h"
 //-----------------Patrones------------------------------------
 char numeros[10]={'e','f','g','h','i','j','k','l','m','n'}; //Números ascendentes 0 a 9
 char flechas[4]={'a','b','c','d'}; // Flechas
