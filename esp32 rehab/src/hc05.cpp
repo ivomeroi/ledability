@@ -11,13 +11,15 @@ char* patron; //Patron a enviar
 //--------------selectPatron: elijo la matriz para enviar------
 
 void listening_bt() {
+  int simbolo;
+  int color;
   if (BTSerial.available()) {
     delay(10);
 
     int messageInt = BTSerial.read(); // Read the character as an integer
     std::string message(2, static_cast<char>(messageInt)); // Convert integer to string    
-    int simbolo = message[0];
-    int color = message[1];
+    simbolo = message[0];
+    color = message[1];
 
     if (simbolo == 102) {
       patron = flechas;
@@ -31,6 +33,7 @@ void listening_bt() {
     else {
       patron = flechas;
     }
+
     if (color == 48) { // ASCII 48 = 0
       BTmessage.color = 0;
     }
