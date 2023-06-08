@@ -9,6 +9,7 @@
 char numeros[10]={'e','f','g','h','i','j','k','l','m','n'}; //Números ascendentes 0 a 9
 char flechas[4]={'a','b','c','d'}; // Flechas
 char circulos[1]={'o'}; //Circulo
+char stop[1]={'p'}; //Circulo
 
 //--------------selectPatron: elijo la matriz para enviar------
 
@@ -25,15 +26,12 @@ void listening_bt() {
     std::string message(2, static_cast<char>(messageInt)); // Convert integer to string    
     simbolo = message[0];
     color = message[1];
+    Serial.println(simbolo);
+    Serial.println(color);
 
     if (simbolo == 112){
-      for(int i = 0; i < 2; i++) {
-        enviar.patron='p';
-        enviar
-        esp_now_send(broadcastAddress[i], (uint8_t *)&enviar, sizeof(enviar));
-      }
-    }
-    if (simbolo == 102) {
+      patron = stop;
+    } else if (simbolo == 102) {
       patron = flechas;
     }
     else if (simbolo == 110) {
