@@ -37,6 +37,7 @@ int checkID(const uint8_t *MACAddr)
         {
         }
     }
+    return 1;
 }
 //--------------------Funcion enviar----------------------------------
 void enviarMensaje(const uint8_t *MACAddr)
@@ -44,7 +45,7 @@ void enviarMensaje(const uint8_t *MACAddr)
 
     enviar.patron = patron[counter]; // envio el elemento X (según en contador) del array patron
     enviar.color = BTmessage.color;  // cambiar a BTmessage.color con la App
-    checkID(MACAddr);
+    int a = checkID(MACAddr);
 
     esp_now_send(MACAddr, (uint8_t *)&enviar, sizeof(enviar));
 }
