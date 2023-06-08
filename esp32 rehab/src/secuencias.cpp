@@ -403,5 +403,6 @@ void patrones(char direccion, int color){
             break;
         case 'p':
             tira.clear(); 
+            tira.show();
     }
 }
