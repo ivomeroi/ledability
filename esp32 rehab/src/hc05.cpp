@@ -26,6 +26,13 @@ void listening_bt() {
     simbolo = message[0];
     color = message[1];
 
+    if (simbolo == 112){
+      for(int i = 0; i < 2; i++) {
+        enviar.patron='p';
+        enviar
+        esp_now_send(broadcastAddress[i], (uint8_t *)&enviar, sizeof(enviar));
+      }
+    }
     if (simbolo == 102) {
       patron = flechas;
     }
