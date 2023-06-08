@@ -8,9 +8,10 @@
 
 extern SoftwareSerial BTSerial; 
 
-extern char numeros[10];
-extern char flechas[4];
-extern char circulos[1];
+extern char numeros[];
+extern char flechas[];
+extern char circulos[];
+extern char stop[];
 
 void listening_bt();
 void readBT();

@@ -6,10 +6,10 @@
 #include "counter.h"
 #include "recibir.h"
 //-----------------Patrones------------------------------------
-char numeros[10]={'e','f','g','h','i','j','k','l','m','n'}; //Números ascendentes 0 a 9
-char flechas[4]={'a','b','c','d'}; // Flechas
-char circulos[1]={'o'}; //Circulo
-char stop[1]={'p'}; //Circulo
+char numeros[]="efghijklmn"; //Números ascendentes 0 a 9
+char flechas[]="abcd"; // Flechas
+char circulos[] ="o"; //Circulo
+char stop[]="p"; //Circulo
 
 //--------------selectPatron: elijo la matriz para enviar------
 
@@ -56,6 +56,7 @@ void listening_bt() {
     else if (color == 51) {
       BTmessage.color = 3;
     }
+    counter=0;
   }
 }
 
