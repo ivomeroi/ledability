@@ -17,19 +17,23 @@ void setup() {
 //----- Iniciar WiFi------------------------------------------
   WiFi.mode(WIFI_STA);//Configura el modo de WiFi como estación (cliente)
   
-   if (esp_now_init() != ESP_OK) {
+  if (esp_now_init() != ESP_OK) {
     return; 
-}
+  }
 //--Definición de ID------------------------------------------
-    defID();
+  defID();
 //----- Emparejar---------------------------------------------
-    peering();
+  peering();
 //----- Callbacks de Recibir-----------------------------------
-    esp_now_register_recv_cb(OnDataRecv);
+  esp_now_register_recv_cb(OnDataRecv);
 //----- Iniciar IR --------------------------------------------
-    initIR(23);
+  initIR(23);
+
+  active = true;
 }
 //------------------------------------------------------------
 void loop() {
-  apagarSecuencia();   
+  if(active){
+    apagarSecuencia();
+  }    
 }
