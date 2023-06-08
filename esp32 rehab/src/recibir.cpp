@@ -9,24 +9,37 @@
 
 struct_message myData; //Estructura que recibo del Master. Contiene la información de patrón y color a mostrar en las tiras.
 
+char convertASCII(int asciiValue) {
+    // Check if the ASCII value represents a number
+    if (asciiValue >= 48 && asciiValue <= 57) {
+        // Convert ASCII value to number
+        return static_cast<char>(asciiValue);
+    }
+    // Check if the ASCII value represents an uppercase letter
+    else if (asciiValue >= 65 && asciiValue <= 90) {
+        // Convert ASCII value to uppercase letter
+        return static_cast<char>(asciiValue);
+    }
+    // Check if the ASCII value represents a lowercase letter
+    else if (asciiValue >= 97 && asciiValue <= 122) {
+        // Convert ASCII value to lowercase letter
+        return static_cast<char>(asciiValue);
+    }
+    else {
+        // Invalid ASCII value, return a default character
+        return '?';
+    }
+}
 void OnDataRecv(const uint8_t *macAddr, const uint8_t *incomingData, int len) {
     //------------- Copio la direccion MAC del emisor-------------------------
     memcpy(&broadcastAddressMaster, macAddr, sizeof(broadcastAddressMaster));          
         char macStr[18];  
-        Serial.print("Packet received from: ");
-        snprintf(macStr, sizeof(macStr), "%02x:%02x:%02x:%02x:%02x:%02x",
-        macAddr[0], macAddr[1], macAddr[2], macAddr[3], macAddr[4], macAddr[5]);
+        macAddr[0], macAddr[1], macAddr[2], macAddr[3], macAddr[4], macAddr[5];
         Serial.println(macStr); //esta parte solo sirve para mostrar en el Monitor la dirección MAC del esp emisor. Descartarlo para el proyecto final.
     //---------------------------------------------------------------------
-    Serial.println("Packet received");
     memcpy(&myData, incomingData, sizeof(myData)); //Copio los datos recibidos en la estructura myData 
-    //------------- Imprimo los datos recibidos----------------------------
-        Serial.println();
-        Serial.println(myData.patron);  //esta parte se descarta para el proyecto final. Solo sirve para mostrar en el Monitor el patrón recibido.
-        Serial.println(myData.color);
     //------------------Imprimo flechas-------------------------------------
-    patrones(myData.patron, myData.color);  //Pasa a mostrar el patron con el color usando la función FLECHAS
-    
+    patrones(convertASCII(myData.patron), myData.color);  //Pasa a mostrar el patron con el color usando la función FLECHAS
     }   
 
     
