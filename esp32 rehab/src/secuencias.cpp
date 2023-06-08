@@ -400,6 +400,8 @@ void patrones(char direccion, int color){
             tira.setPixelColor(45, r, g, b); 
             tira.setPixelColor(46, r, g, b);   
             tira.show();
-            break; 
+            break;
+        case 'p':
+            tira.clear(); 
     }
 }
