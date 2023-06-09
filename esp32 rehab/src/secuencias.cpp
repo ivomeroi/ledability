@@ -22,6 +22,10 @@ void patrones(char direccion, int color){
         r=0;
         g=0;
         b=255;
+    } else if(color == 3) {
+        r = random(256);  // Random value between 0 and 255
+        g = random(256);
+        b = random(256);
     }
     tira.begin();
     switch(direccion){
