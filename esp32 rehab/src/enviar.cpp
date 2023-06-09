@@ -29,15 +29,17 @@ void peering()
         }
     }
 }
+//--------------------Funcion checkID----------------------------
 int checkID(const uint8_t *MACAddr)
 {
     for (int i = 0; i < 3; i++)
     {
         if (memcmp(MACAddr, broadcastAddress[i], 6) == 0)
         {
+            return i;
         }
     }
-    return 1;
+    return -1;
 }
 //--------------------Funcion enviar----------------------------------
 void enviarMensaje(const uint8_t *MACAddr)
@@ -46,6 +48,7 @@ void enviarMensaje(const uint8_t *MACAddr)
     enviar.patron = patron[counter]; // envio el elemento X (según en contador) del array patron
     enviar.color = BTmessage.color;  // cambiar a BTmessage.color con la App
     int a = checkID(MACAddr);
-
+    Serial.println(enviar.patron);
+    Serial.println(enviar.color);
     esp_now_send(MACAddr, (uint8_t *)&enviar, sizeof(enviar));
 }

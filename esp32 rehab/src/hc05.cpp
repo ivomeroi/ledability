@@ -9,8 +9,7 @@
 char numeros[]="efghijklmn"; //Números ascendentes 0 a 9
 char flechas[]="abcd"; // Flechas
 char circulos[] ="o"; //Circulo
-char stop[]="p"; //Circulo
-
+char stop[]="p"; //Stop
 //--------------selectPatron: elijo la matriz para enviar------
 
 void listening_bt() {
@@ -29,8 +28,10 @@ void listening_bt() {
     Serial.println(simbolo);
     Serial.println(color);
 
+
     if (simbolo == 112){
       patron = stop;
+
     } else if (simbolo == 102) {
       patron = flechas;
     }
@@ -39,9 +40,6 @@ void listening_bt() {
     }
     else if (simbolo == 99) {
       patron = circulos;
-    }
-    else {
-      patron = flechas;
     }
 
     if (color == 48) { // ASCII 48 = 0
