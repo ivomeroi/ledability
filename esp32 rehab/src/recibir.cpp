@@ -20,7 +20,7 @@ void OnDataRecv(const uint8_t * mac_addr, const uint8_t *incomingData, int len) 
   //---------------------Enviar Proximos --------------------------------
     enviarMensaje(mac_addr);
 
-    //writeBT(checkID(mac_addr), patron[counter], BTmessage.color);
+    writeBT(checkID(mac_addr), patron[counter], BTmessage.color);
   //--------------------Control de Counter--------------------------------
     counter++; //actualizo el valor del contador para que el proximo valor a enviar.
     if (counter>=strlen(patron)){ //controlo el contador. Si llega al final del array, lo reinicio y se repite el patron.

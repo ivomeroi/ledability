@@ -18,8 +18,7 @@ struct_message boardsStruct[3]={esp2,esp3,esp4}; //Creo una subestructura de la 
 
 //------------writeBT: escribir información en el HC-----------
 void writeBT(int ID, char pat, int col) { //escribir el mensaje en el HC en función de la ID, patron y color
-    Serial.write((char) ID); //enviar el ID
-    Serial.write(pat); //enviar el patron
-    Serial.write((char) col); //enviar el color
-    Serial.print('\n');
+    Serial.print(ID); //enviar el ID
+    Serial.print(pat); //enviar el patron
+    Serial.print(col); //enviar el color
 }
