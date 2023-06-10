@@ -3,6 +3,8 @@
 
 
 extern int counter;
+extern int counter2;
+extern bool randomValue;
 extern char* patron;
 
 typedef struct struct_send {

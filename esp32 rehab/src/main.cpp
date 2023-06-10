@@ -19,7 +19,7 @@ void setup() {
   esp2.recibir=false;
   esp3.recibir=false;
   esp4.recibir=false;
-  patron=numeros;
+  randomValue=false;
 // --- Iniciar Serial ---
   Serial.begin(9600); 
   BTSerial.begin(9600);

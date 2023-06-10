@@ -10,19 +10,24 @@ Adafruit_NeoPixel tira = Adafruit_NeoPixel(49, 16, NEO_GRB + NEO_KHZ800);
 void patrones(char direccion, int color){
     int r, g, b; 
 
-    if (color == 0){
+    if (color == 0){ //Rojo
         r=255;
         g=0;
         b=0;
-    } else if(color==1) {
+    } else if(color==1) { //Verde
         r=0;
         g=255;
         b=0;
-    }  else if(color==2){
+    }  else if(color==2){ //Azul
         r=0;
         g=0;
         b=255;
-    }
+    }  else if(color==3){ //Amarillo
+        r=255;
+        g=255;
+        b=0;
+    }        
+
     tira.begin();
     switch(direccion){
         case 'a':

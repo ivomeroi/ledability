@@ -44,11 +44,15 @@ int checkID(const uint8_t *MACAddr)
 //--------------------Funcion enviar----------------------------------
 void enviarMensaje(const uint8_t *MACAddr)
 {
-
+    if (randomValue==true){
+        int numb = random(0, 10);
+        enviar.patron = patron[numb]; // envio el elemento X (según en contador) del array patron
+    }
+    else{
     enviar.patron = patron[counter]; // envio el elemento X (según en contador) del array patron
+    }
     enviar.color = BTmessage.color;  // cambiar a BTmessage.color con la App
     int a = checkID(MACAddr);
-    Serial.println(enviar.patron);
-    Serial.println(enviar.color);
     esp_now_send(MACAddr, (uint8_t *)&enviar, sizeof(enviar));
+
 }

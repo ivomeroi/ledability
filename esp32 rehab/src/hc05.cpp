@@ -6,10 +6,14 @@
 #include "counter.h"
 #include "recibir.h"
 //-----------------Patrones------------------------------------
-char numeros[]="efghijklmn"; //Números ascendentes 0 a 9
+char numeros1[]="efghijklmn"; //Números ascendentes 0 a 9
+char numeros2[]="nmlkjihgfe"; //Números descendentes 9 a 0
 char flechas[]="abcd"; // Flechas
 char circulos[] ="o"; //Circulo
 char stop[]="p"; //Stop
+char inicio[]="x"; //Inicio
+char pausa[]="z"; //Patron
+bool randomValue;
 //--------------selectPatron: elijo la matriz para enviar------
 
 void listening_bt() {
@@ -28,31 +32,47 @@ void listening_bt() {
     Serial.println(simbolo);
     Serial.println(color);
 
-
+    // -------------Secuencias---------------
     if (simbolo == 112){
       patron = stop;
-
-    } else if (simbolo == 102) {
+    }  
+    else if (simbolo == 102) {
       patron = flechas;
     }
     else if (simbolo == 110) {
-      patron = numeros;
+      patron = numeros1;
+    }
+    else if (simbolo == 111) {
+      patron = numeros2;
     }
     else if (simbolo == 99) {
       patron = circulos;
     }
-
-    if (color == 48) { // ASCII 48 = 0
+    else if (simbolo == 113){
+      patron = numeros1;
+      randomValue = true;
+    }
+    else if (simbolo == 88){
+      patron = inicio;
+    } 
+    else if (simbolo == 89){
+      patron = pausa;
+    }
+    //   -------------Colores----------------
+    if (color == 48) { // ASCII 48 = 0 Rojo
       BTmessage.color = 0;
     }
-    else if (color == 49) { // ASCII 49 = 1
+    else if (color == 49) { // ASCII 49 = 1 Verde
       BTmessage.color = 1;
     }
-    else if (color == 50) { // ASCII 50 = 2
+    else if (color == 50) { // ASCII 50 = 2 Azul
       BTmessage.color = 2;
     }
     else if (color == 51) {
-      BTmessage.color = 3;
+      BTmessage.color = 3;  // ASCII 51 = 3 Amarillo
+    }
+    else if (color == 52){
+      BTmessage.color = 4; // ASCII 52 = 4  Random
     }
     counter=0;
   }
