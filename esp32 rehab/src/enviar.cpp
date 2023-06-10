@@ -49,14 +49,10 @@ void enviarMensaje(const uint8_t *MACAddr)
         enviar.patron = patron[numb]; // envio el elemento X (según en contador) del array patron
     }
     else{
-    enviar.patron = patron[counter]; // envio el elemento X (según en contador) del array patron
+        enviar.patron = patron[counter]; // envio el elemento X (según en contador) del array patron
     }
     enviar.color = BTmessage.color;  // cambiar a BTmessage.color con la App
-    if (BTmessage.color = 4){
-        enviar.color = random(0, 4);
-    }
-    
-    int padID = checkID(MACAddr);
+    int a = checkID(MACAddr);
     esp_now_send(MACAddr, (uint8_t *)&enviar, sizeof(enviar));
-    writeBT(padID, enviar.patron, enviar.color);
+
 }
