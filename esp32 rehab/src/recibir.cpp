@@ -41,15 +41,13 @@ void OnDataRecv(const uint8_t *macAddr, const uint8_t *incomingData, int len) {
     memcpy(&myData, incomingData, sizeof(myData)); //Copio los datos recibidos en la estructura myData
     char asciiConverted = convertASCII(myData.patron); //Convierto el patrón de ASCII a char
     Serial.println(asciiConverted); //Muestro en el Monitor el patrón recibido. Descartarlo para el proyecto final.
-    if(active){
-      if (asciiConverted == 'z'){
-        active = false;
-      }else{
+    if (asciiConverted == 'Y'){
+        active = !active;
+    } else {
+      if(active){
         //------------------Imprimo flechas-------------------------------------
         patrones(asciiConverted, myData.color);  //Pasa a mostrar el patron con el color usando la función FLECHAS
       }
-    }else if (asciiConverted == 'x'){
-      active = true;
     }
   }   
 
