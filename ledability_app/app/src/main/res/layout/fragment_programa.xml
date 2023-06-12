@@ -15,7 +15,7 @@
         android:gravity="center_horizontal">
 
         <TextView
-            android:id="@+id/timer"
+            android:id="@+id/program_title"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_width="match_parent"
@@ -23,14 +23,27 @@
             android:layout_marginBottom="20dp"
             android:text="PROGRAMA X"
             android:textSize="30sp"
-            android:gravity="center" />
+            android:gravity="center"
+            android:tag='X'/>
+        <TextView
+            android:id="@+id/program_color"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-20dp"
+            android:layout_marginBottom="20dp"
+            android:text="Color"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:tag='X'/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="120dp"
-        android:id="@+id/dagadf"
+        android:id="@+id/texto"
         android:orientation="vertical"
         android:layout_alignParentTop="true"
         android:gravity="center_horizontal">
@@ -78,40 +91,48 @@
             android:columnCount="2">
 
         <ImageView
+            android:id="@+id/pad0"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_row="0"
             android:layout_column="0"
             android:layout_gravity="center"
             android:src="@drawable/empty_pad"
-            android:scaleType="centerCrop"/>
+            android:scaleType="centerCrop"
+            android:tintMode="multiply"/>
 
         <ImageView
+            android:id="@+id/pad1"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_row="0"
             android:layout_column="1"
             android:layout_gravity="center"
             android:src="@drawable/empty_pad"
-            android:scaleType="centerCrop"/>
+            android:scaleType="centerCrop"
+            android:tintMode="multiply"/>
 
         <ImageView
+            android:id="@+id/pad2"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_row="1"
             android:layout_column="0"
             android:layout_gravity="center"
             android:src="@drawable/empty_pad"
-            android:scaleType="centerCrop"/>
+            android:scaleType="centerCrop"
+            android:tintMode="multiply"/>
 
         <ImageView
+            android:id="@+id/pad3"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_row="1"
             android:layout_column="1"
             android:layout_gravity="center"
             android:src="@drawable/empty_pad"
-            android:scaleType="centerCrop"/>
+            android:scaleType="centerCrop"
+            android:tintMode="multiply"/>
         </GridLayout>
     </LinearLayout>
 
@@ -136,8 +157,8 @@
             android:elevation="6dp"
             android:stateListAnimator="@animator/button_animator"
             android:textColor="@android:color/white"
-            android:text="Iniciar"
-            android:onClick="iniciarPausar"/>
+            android:text="Conectar"
+            android:onClick="iniciarPausar" />
 
         <Button
             android:layout_width="wrap_content"

@@ -145,109 +145,6 @@ public class MainActivity extends AppCompatActivity
         getSupportActionBar().setTitle(title);
     }
 
-    public void iniciarPausar(View view) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException, IOException {
-        Button boton = (Button) findViewById(R.id.iniciarPausar);
-        TextView timer = (TextView) findViewById(R.id.timer);
-        String BLUETOOTH_ADDRESS = "00:18:E4:34:C5:45";
-        BluetoothDevice device = btadapter.getRemoteDevice(BLUETOOTH_ADDRESS);
-        Method m = device.getClass().getMethod("isConnected", (Class[]) null);
-        boolean boo = (boolean) m.invoke(device, (Object[]) null);
-        if (boton.getText().equals("Pausar")) {
-            countdowntimer.cancel();
-            stopService(new Intent(MainActivity.this, analisisecg.class));
-            Toast.makeText(this, "Se pausó el análisis", Toast.LENGTH_SHORT).show();
-            boton.setText("Reanudar");
-        } else if (boton.getText().equals("Conectar")){
-
-            if (!boo) {
-                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
-                    // TODO: Consider calling
-                    //    ActivityCompat#requestPermissions
-                    // here to request the missing permissions, and then overriding
-                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                    //                                          int[] grantResults)
-                    // to handle the case where the user grants the permission. See the documentation
-                    // for ActivityCompat#requestPermissions for more details.
-                    return;
-                }
-                boton.setText("Iniciar");
-                startService(new Intent(MainActivity.this, analisisecg.class));
-            }else{
-                boton.setText("Iniciar");
-
-            }
-            } else if (boton.getText().equals("Iniciar")){
-                boton.setText("Pausar");
-                mMillisUntilFinish = 60000;
-                countdowntimer = new CountDownTimer(mMillisUntilFinish, 1000) {
-
-                    public void onTick(long millisUntilFinished) {
-                        timer.setText("Tiempo Restante: " + new SimpleDateFormat("mm:ss").format(new Date(millisUntilFinished)));
-                        mMillisUntilFinish = millisUntilFinished;
-                    }
-
-                    public void onFinish() {
-                        finalizar(view);
-                    }
-                }.start();
-            inicio2.sendDataToPairedDevice("A", MainActivity.this);
-
-
-        } else if (boton.getText().equals("Reanudar")){
-            boton.setText("Pausar");
-            countdowntimer = new CountDownTimer(mMillisUntilFinish, 1000) {
-
-                public void onTick(long millisUntilFinished) {
-                    timer.setText("Tiempo Restante: " + new SimpleDateFormat("mm:ss").format(new Date(millisUntilFinished)));
-                    mMillisUntilFinish = millisUntilFinished;
-                }
-
-                public void onFinish() {
-                    finalizar(view);
-                }
-            }.start();
-            inicio2.sendDataToPairedDevice("A", MainActivity.this);
-            startService(new Intent(MainActivity.this, analisisecg.class));
-        }
-    }
-
-
-
-    public void finalizar(View view) {
-        Button boton1 = (Button) findViewById(R.id.finalizar);
-        Button boton2 = (Button) findViewById(R.id.iniciarPausar);
-        TextView timer = (TextView) findViewById(R.id.timer);
-        String BLUETOOTH_ADDRESS = "00:18:E4:34:C5:45";
-        BluetoothDevice device = btadapter.getRemoteDevice(BLUETOOTH_ADDRESS);
-        if (boton1.getText().equals("Finalizar")) {
-            assist = new CountDownTimer(1, 1) {
-
-                public void onTick(long millisUntilFinished) {
-                    countdowntimer.cancel();
-                }
-
-                public void onFinish() {
-                    countdowntimer.cancel();
-                }
-            }.start();
-            timer.setText("Listo!");
-
-            stopService(new Intent(MainActivity.this, analisisecg.class));
-            Toast.makeText(this, "Se detuvo el análisis", Toast.LENGTH_SHORT).show();
-            boton1.setText("Reiniciar");
-            boton2.setVisibility(View.GONE);
-
-
-        } else {
-            timer.setText("Presione Iniciar");
-            boton1.setText("Finalizar");
-            boton2.setVisibility(View.VISIBLE);
-            boton2.setText("Conectar");
-        }
-        inicio2.sendDataToPairedDevice("Z", MainActivity.this);
-
-    }
-
     @Override
     protected void onActivityResult(int requestcode, int resultcode, Intent data) {
         super.onActivityResult(requestcode, resultcode, data);
@@ -255,7 +152,7 @@ public class MainActivity extends AppCompatActivity
         if (requestcode == 1) {
             if (resultcode == RESULT_OK) {
                 Toast.makeText(this, "Bluetooth habilitado", Toast.LENGTH_SHORT).show();
-                startService(new Intent(this, analisisecg.class));
+                //startService(new Intent(this, analisisecg.class));
             }
         }
     }

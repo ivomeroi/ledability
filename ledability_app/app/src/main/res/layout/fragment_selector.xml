@@ -25,6 +25,7 @@
         android:id="@+id/c"
         android:orientation="vertical"
         android:layout_alignParentTop="true"
+        android:textColor="@color/colorAccent"
         android:gravity="center_horizontal">
 
         <TextView
@@ -33,10 +34,20 @@
             android:layout_marginRight="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="2dp"
             android:text="Seleccione un programa"
             android:textSize="30sp"
             android:gravity="center" />
+
+        <Spinner
+            android:id="@+id/colorSpinner"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:spinnerMode="dropdown"
+            android:entries="@array/color_options"
+            android:textColor="@color/colorAccent"
+            android:background="@drawable/spinner_background"/>
     </LinearLayout>
 
     <LinearLayout
@@ -68,9 +79,10 @@
             android:columnCount="2">
 
         <Button
+            android:id="@+id/programa1"
             android:layout_width="170dp"
             android:layout_height="170dp"
-            android:text="PROGRAMA 1"
+            android:text="NUMEROS ASCENDENTES"
             android:textSize="18sp"
             android:textColor="@android:color/white"
             android:background="@drawable/button_background"
@@ -84,13 +96,15 @@
             android:shadowRadius="4"
             android:layout_row="0"
             android:layout_column="0"
-            android:onClick="onButtonClick"/>
+            android:onClick="onButtonClick"
+            android:tag="n5"/>
 
 
         <Button
+            android:id="@+id/programa2"
             android:layout_width="170dp"
             android:layout_height="170dp"
-            android:text="PROGRAMA 2"
+            android:text="NUMEROS DESCENDENTES"
             android:textSize="18sp"
             android:textColor="@android:color/white"
             android:background="@drawable/button_background"
@@ -104,12 +118,15 @@
             android:shadowRadius="4"
             android:layout_row="0"
             android:layout_column="1"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:onClick="onButtonClick"
+            android:tag="m5"/>
 
         <Button
+            android:id="@+id/programa3"
             android:layout_width="170dp"
             android:layout_height="170dp"
-            android:text="PROGRAMA 3"
+            android:text="FLECHAS"
             android:textSize="18sp"
             android:textColor="@android:color/white"
             android:background="@drawable/button_background"
@@ -123,12 +140,15 @@
             android:shadowRadius="4"
             android:layout_row="1"
             android:layout_column="0"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:onClick="onButtonClick"
+            android:tag="f5"/>
 
         <Button
+            android:id="@+id/programa4"
             android:layout_width="170dp"
             android:layout_height="170dp"
-            android:text="PROGRAMA 4"
+            android:text="CIRCULOS"
             android:textSize="18sp"
             android:textColor="@android:color/white"
             android:background="@drawable/button_background"
@@ -142,7 +162,9 @@
             android:shadowRadius="4"
             android:layout_row="1"
             android:layout_column="1"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:onClick="onButtonClick"
+            android:tag="c5"/>
         </GridLayout>
     </LinearLayout>
 </RelativeLayout>

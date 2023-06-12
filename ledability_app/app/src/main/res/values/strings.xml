@@ -13,4 +13,13 @@
     <string name="ajustes">Ajustes</string>
     <string name="ha">Historial de Alertas</string>
     <string name="sintomas">Diario de Síntomas</string>
+
+    <string-array name="color_options">
+        <item>Rojo</item>
+        <item>Verde</item>
+        <item>Azul</item>
+        <item>Amarillo</item>
+        <item>Rojo-Verde-Azul-Amarillo</item>
+        <item>Aleatorio</item>
+    </string-array>
 </resources>

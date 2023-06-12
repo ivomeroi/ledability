@@ -1,6 +1,7 @@
 package com.example.anto.holterbluetoothinteligente;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.PendingIntent;
@@ -14,6 +15,9 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
@@ -23,8 +27,8 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 
-import android.view.View;
-import android.widget.TextView;
+import android.util.Log;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -32,17 +36,13 @@ import com.google.android.gms.location.ActivityRecognition;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.nio.charset.Charset;
-import java.util.UUID;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
-//TODO
-
-
-public class analisisecg extends Service
-        implements GoogleApiClient.ConnectionCallbacks {
+public class analisisecg extends Service implements GoogleApiClient.ConnectionCallbacks {
 
     Handler handler = new Handler();
     BluetoothAdapter btadapter = BluetoothAdapter.getDefaultAdapter();
@@ -55,17 +55,15 @@ public class analisisecg extends Service
     GoogleApiClient googleApiClient;
     BluetoothDevice device;
 
-
     BroadcastReceiver alarmReceiver1 = new BroadcastReceiver() {
         public void onReceive(Context context, Intent intent) {
 
-        PendingIntent alarmIntent3;
+            PendingIntent alarmIntent3;
 
-        alarmIntent3 = PendingIntent.getBroadcast(getApplicationContext(), 0, new Intent("alarma1"), 0);
-        alarmMgr.setExact(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 60 * 1000, alarmIntent3);
+            alarmIntent3 = PendingIntent.getBroadcast(getApplicationContext(), 0, new Intent("alarma1"), 0);
+            alarmMgr.setExact(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 60 * 1000, alarmIntent3);
         }
     };
-
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -98,7 +96,6 @@ public class analisisecg extends Service
         editor.putBoolean("terminado", false);
         editor.apply();
 
-
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
@@ -127,18 +124,15 @@ public class analisisecg extends Service
             e.printStackTrace();
         }
 
-        if(!boo){
+        if (!boo) {
             Toast.makeText(getApplicationContext(), "uwu", Toast.LENGTH_SHORT).show();
-        }else{
-
-
+        } else {
             Toast.makeText(getApplicationContext(), "uwunt", Toast.LENGTH_SHORT).show();
         }
 
         btsocket = inicio2.bluetoothConnection.getBtSocket();
-        Toast.makeText(getApplicationContext(), String.valueOf(btsocket), Toast.LENGTH_SHORT).show();
 
-        new Thread(new recibir(btsocket)).start();
+        new Thread(new recibir(btsocket, getApplicationContext())).start();
         googleApiClient = new GoogleApiClient.Builder(getApplicationContext())
                 .addApi(ActivityRecognition.API)
                 .addConnectionCallbacks(this)
@@ -151,14 +145,11 @@ public class analisisecg extends Service
     public void onConnectionSuspended(int cause) {
     }
 
-
     @Override
     public void onConnected(Bundle connectionHint) {
         PendingIntent actintent = PendingIntent.getBroadcast(getApplicationContext(), 0, new Intent("activity"), 0);
         ActivityRecognition.ActivityRecognitionApi.requestActivityUpdates(googleApiClient, 0, actintent);
     }
-
-
 
     public void onDestroy() {
         super.onDestroy();
@@ -179,70 +170,117 @@ public class analisisecg extends Service
             }
             btsocket = null;
         }
-
-        unregisterReceiver(alarmReceiver1);
-
-        editor.putBoolean("terminado", true);
-        editor.putLong("horafin", System.currentTimeMillis());
-        editor.apply();
     }
 
     class recibir implements Runnable {
-        char lectura;
         BluetoothSocket btsocket;
         InputStream instream;
+        private Map<Integer, Integer> colorMap;
+        private Map<Character, String> symbolMap;
+        private Context context;
 
-
-        public recibir(BluetoothSocket socket) {
+        public recibir(BluetoothSocket socket, Context context) {
             btsocket = socket;
+            this.context = context;
             try {
                 instream = btsocket.getInputStream();
             } catch (IOException e) {
                 instream = null;
             }
+            initializeColorMap();
+            initializeSymbolMap();
+        }
+
+        private void initializeColorMap() {
+            colorMap = new HashMap<>();
+            colorMap.put(0, Color.RED);     // Color.RED
+            colorMap.put(1, Color.GREEN);  // Color.GREEN
+            colorMap.put(2, Color.CYAN);  // Color.BLUE
+            colorMap.put(3, Color.YELLOW);  // Color.YELLOW
+            colorMap.put(6, Color.WHITE);  // Color.YELLOW
+        }
+
+        private void initializeSymbolMap() {
+            symbolMap = new HashMap<>();
+            symbolMap.put('a', "flecha_arriba");
+            symbolMap.put('b', "flecha_abajo");
+            symbolMap.put('c', "flecha_izquierda");
+            symbolMap.put('d', "flecha_derecha");
+            symbolMap.put('e', "uno");
+            symbolMap.put('f', "dos");
+            symbolMap.put('g', "tres");
+            symbolMap.put('h', "cuatro");
+            symbolMap.put('i', "cinco");
+            symbolMap.put('j', "seis");
+            symbolMap.put('k', "siete");
+            symbolMap.put('l', "ocho");
+            symbolMap.put('m', "nueve");
+            symbolMap.put('n', "cero");
+            symbolMap.put('o', "circulo");
+            symbolMap.put('p', "empty_pad");
+
         }
 
         public void run() {
             StringBuilder stringBuilder = new StringBuilder();
+            boolean isFirstLineReceived = false;
+            boolean isSecondLineReceived = false;
+            Log.d("AnalisisECG", "a");
 
             while (servicioactivo) {
                 try {
-                    byte[] buffer = new byte[30];
-                    int bytesRead = instream.read(buffer, 0, 30);
+                    ColorStateList colorStateList = null;
+                    byte[] data = new byte[30];
+                    int bytesRead = instream.read(data, 0, 30);
+                    byte[] buffer = Arrays.copyOf(data, bytesRead);
+                    String dataString = new String(buffer, 0, bytesRead).trim();
 
-                    if (bytesRead > 0) {
-                        for (int i = 0; i < bytesRead; i++) {
-                            char c = (char) buffer[i];
+                    if (dataString.length() == 1 && Character.isDigit(dataString.charAt(0))) {
+                        stringBuilder.append(dataString);
+                        isFirstLineReceived = true;
+                    } else if (dataString.length() == 2 && Character.isLetter(dataString.charAt(0)) && Character.isDigit(dataString.charAt(1))) {
+                        stringBuilder.append(dataString);
+                        isSecondLineReceived = true;
+                    }
 
-                            if (c == '\n') {
-                                String receivedLine = stringBuilder.toString();
+                    if (isFirstLineReceived && isSecondLineReceived) {
+                        String combinedData = stringBuilder.toString();
 
-                                // Process the received line as needed
-                                // For example, update UI or perform other operations
-                                // You can use a handler or broadcast to communicate with other components
+                        int padNumber = Character.getNumericValue(combinedData.charAt(0));
+                        char symbol = combinedData.charAt(1);
+                        int color = Character.getNumericValue(combinedData.charAt(2));
 
-                                // Update UI example:
-                                handler.post(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        // Update UI here with the received line
-                                        // For example, update a TextView
-                                        Toast.makeText(getApplicationContext(), receivedLine, Toast.LENGTH_SHORT).show();
+                        String padName = "pad" + padNumber;
+                        int padId = getApplicationContext().getResources().getIdentifier(padName, "id", getPackageName());
 
-                                        inicio2.updateTextView(receivedLine);
-                                    }
-                                });
+                        String symbolName = symbolMap.get(symbol);
 
-                                // Broadcast example:
-                                Intent dataIntent = new Intent("com.example.bluetooth.DATA_RECEIVED");
-                                dataIntent.putExtra("receivedData", receivedLine);
-                                sendBroadcast(dataIntent);
+                        int imageId = -1;
+                        int colorValue = -1;
 
-                                stringBuilder.setLength(0); // Clear the StringBuilder for the next line
-                            } else {
-                                stringBuilder.append(c);
-                            }
+                        if (symbol >= 'a' && symbol <= 'p') {
+                            imageId = getResources().getIdentifier(symbolName, "drawable", getPackageName());
                         }
+                        if(color <= 3 || color == 6){
+                            colorValue = colorMap.get(color);
+                            colorStateList = ColorStateList.valueOf(colorValue);
+                        }
+
+                        if ((colorValue != -1) && (imageId != -1) && (padName != null)) {
+                            Log.d("AnalisisECG", "Received packet:");
+                            Log.d("AnalisisECG", "Pad ID: " + padId);
+                            Log.d("AnalisisECG", "symbolname: " + symbolName);
+                            Log.d("AnalisisECG", "Color: " + color);
+                            updatePAD(padId, colorStateList, imageId);
+                        }
+
+
+                        // Reset flags and StringBuilder for the next iteration
+                        isFirstLineReceived = false;
+                        isSecondLineReceived = false;
+                        stringBuilder.setLength(0);
+
+                    } else {
                     }
                 } catch (IOException e) {
                     handler.post(new Runnable() {
@@ -257,4 +295,17 @@ public class analisisecg extends Service
 
     }
 
+    public void updatePAD(final int resourceId, final ColorStateList colorStateList, final int imageId) {
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                // Broadcast an intent to the Activity to update the UI
+                Intent intent = new Intent("com.example.UPDATE_UI_ACTION");
+                intent.putExtra("resourceId", resourceId);
+                intent.putExtra("colorStateList", colorStateList);
+                intent.putExtra("imageId", imageId);
+                sendBroadcast(intent);
+            }
+        });
+    }
 }
