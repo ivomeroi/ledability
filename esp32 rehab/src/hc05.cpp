@@ -75,6 +75,10 @@ void listening_bt() {
     }
     if (simbolo == 89) { // ASCII 89 = 'Y'
       isSensorDetectionPaused = !isSensorDetectionPaused; // Toggle the pause state
+      char pause = 'Y';
+      for (int i = 0; i < 3; i++) {
+        esp_now_send(broadcastAddress[i], (uint8_t *)&pause, sizeof(pause));
+      }
     } else{
       counter=0;
     }
