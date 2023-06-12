@@ -44,7 +44,7 @@ void OnDataRecv(const uint8_t *macAddr, const uint8_t *incomingData, int len) {
     if (asciiConverted == 'Y'){
         active = !active;
     } else {
-      if(active){
+      if(active || asciiConverted == 'p'){
         //------------------Imprimo flechas-------------------------------------
         patrones(asciiConverted, myData.color);  //Pasa a mostrar el patron con el color usando la función FLECHAS
       }
