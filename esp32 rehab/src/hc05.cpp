@@ -34,6 +34,12 @@ void listening_bt() {
     if (simbolo == 112){
       patron = stop;
       isSensorDetectionPaused = false;
+      char pause = 'p';
+      for (int i = 0; i < 3; i++) {
+        esp_now_send(broadcastAddress[i], (uint8_t *)&pause, sizeof(pause));
+        writeBT(checkID(broadcastAddress[i]), 'p', 6);
+      }
+      
     }  
     else if (simbolo == 102) {
       patron = flechas;
