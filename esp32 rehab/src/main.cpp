@@ -10,12 +10,13 @@
 #include "recibir.h"
 #include "sensor.h"
 
-SoftwareSerial BTSerial(3); 
+
 //------------------------------------------------------------
 void setup() {
   
 // --- Iniciar Variables ---
   counter=0;
+  color_counter=0;
   esp2.recibir=false;
   esp3.recibir=false;
   esp4.recibir=false;
@@ -41,7 +42,8 @@ void setup() {
 void loop() {
   listening_bt();
   delay(100);
-  //apagarSecuencia();
+  apagarSecuencia();
+  delay(100);
 
 }
   

@@ -1,11 +1,15 @@
 #ifndef COUNTER_H
 #define COUNTER_H
 
+#include <SoftwareSerial.h>
 
 extern int counter;
-extern int counter2;
+extern int color_counter;
 extern bool randomValue;
 extern char* patron;
+extern bool isSensorDetectionPaused;
+
+extern SoftwareSerial BTSerial;
 
 typedef struct struct_send {
   char patron;  

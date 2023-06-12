@@ -2,7 +2,11 @@
 #include <SoftwareSerial.h>
 
 int counter;
+int color_counter;
 char* patron;
+bool isSensorDetectionPaused = false;
+
+SoftwareSerial BTSerial(3);
 
 struct_send enviar; // estructura de datos que contiene el patron y el color
 
@@ -17,8 +21,8 @@ struct_message esp4;
 struct_message boardsStruct[3]={esp2,esp3,esp4}; //Creo una subestructura de la estructura boardsStruct para cada ESP slave
 
 //------------writeBT: escribir información en el HC-----------
-void writeBT(int ID, char pat, int col) { //escribir el mensaje en el HC en función de la ID, patron y color
-    Serial.print(ID); //enviar el ID
-    Serial.print(pat); //enviar el patron
-    Serial.print(col); //enviar el color
+void writeBT(int ID, char pat, int col) {
+    std::string data = std::to_string(ID) + pat + std::to_string(col); // Concatenate the values into a string
+    BTSerial.println(data.c_str()); // Send the string with a newline character
+    Serial.println(data.c_str());
 }

@@ -29,12 +29,11 @@ void listening_bt() {
     std::string message(2, static_cast<char>(messageInt)); // Convert integer to string    
     simbolo = message[0];
     color = message[1];
-    Serial.println(simbolo);
-    Serial.println(color);
 
     // -------------Secuencias---------------
     if (simbolo == 112){
       patron = stop;
+      isSensorDetectionPaused = false;
     }  
     else if (simbolo == 102) {
       patron = flechas;
@@ -52,12 +51,6 @@ void listening_bt() {
       patron = numeros1;
       randomValue = true;
     }
-    else if (simbolo == 88){
-      patron = inicio;
-    } 
-    else if (simbolo == 89){
-      patron = pausa;
-    }
     //   -------------Colores----------------
     if (color == 48) { // ASCII 48 = 0 Rojo
       BTmessage.color = 0;
@@ -74,7 +67,17 @@ void listening_bt() {
     else if (color == 52){
       BTmessage.color = 4; // ASCII 52 = 4  Random
     }
-    counter=0;
+    else if (color == 53){
+      BTmessage.color = 5; // ASCII 52 = 4  Random
+    }
+    else if (color == 54){
+      BTmessage.color = 6; // ASCII 52 = 4  Random
+    }
+    if (simbolo == 89) { // ASCII 89 = 'Y'
+      isSensorDetectionPaused = !isSensorDetectionPaused; // Toggle the pause state
+    } else{
+      counter=0;
+    }
   }
 }
 

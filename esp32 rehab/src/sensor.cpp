@@ -18,10 +18,11 @@ void initIR(int Pin){
 //en sensorPin paara la función apagarSecuencia
 //-------------------------------------------------------------
 void apagarSecuencia(){
-    sensorValue = digitalRead(sensorPin);// lee el valor del sensor
-    char simbolo;
-      if (sensorValue==LOW) {
-        tira.clear();
+    if (!isSensorDetectionPaused) {
+        sensorValue =digitalRead(sensorPin);// lee el valor del sensor
+        char simbolo;
+        if (sensorValue==LOW) {
+            tira.clear();
 
             if (randomValue==true){
                 int numb = random(0, 10);
@@ -31,21 +32,27 @@ void apagarSecuencia(){
                 simbolo = patron[counter]; // envio el elemento X (según en contador) del array patron
             }
 
-        enviar.color = BTmessage.color;  // cambiar a BTmessage.color con la App
-            if (BTmessage.color = 4){
+            enviar.color = BTmessage.color;  // cambiar a BTmessage.color con la App
+            if (BTmessage.color == 4){
+                enviar.color = color_counter;
+                color_counter++;
+                if (color_counter > 3){
+                    color_counter = 0;
+                }
+            } else if (BTmessage.color == 5){
                 enviar.color = random(0, 4);
             }
-        counter++;
-        if (counter>=strlen(patron)){ //controlo el contador. Si llega al final del array, lo reinicio y se repite el patron.
-            counter=0;
+            counter++;
+            if (counter>=strlen(patron)){ //controlo el contador. Si llega al final del array, lo reinicio y se repite el patron.
+                counter=0;
+            }
+            patrones(simbolo,BTmessage.color);
+            writeBT(0, simbolo, enviar.color);
         }
-        patrones(patron[counter],BTmessage.color);
-       // Serial.print('1');
-       // Serial.print(patron[counter]);
-       // Serial.print(BTmessage.color);
-       // Serial.print('\n');
-        } 
-    } 
+    }
+
+            
+} 
     
 //La función principal es leer constantemente la entrada del sensor. Si la salida es LOW, hay un obstaculo y el la variable toMaster 
 //(la que irá del slave al master) se pondrá en true. Entonces esta información irá al master. Luego se limpian las tiras y se espera a que lleguen nuevos valores

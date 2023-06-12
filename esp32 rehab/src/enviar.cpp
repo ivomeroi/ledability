@@ -36,7 +36,7 @@ int checkID(const uint8_t *MACAddr)
     {
         if (memcmp(MACAddr, broadcastAddress[i], 6) == 0)
         {
-            return i;
+            return i+1;
         }
     }
     return -1;
@@ -53,10 +53,22 @@ void enviarMensaje(const uint8_t *MACAddr)
     }
     enviar.color = BTmessage.color;  // cambiar a BTmessage.color con la App
     if (BTmessage.color == 4){
+        enviar.color = color_counter;
+        color_counter++;
+        if (color_counter > 3){
+            color_counter = 0;
+        }
+    } else if (BTmessage.color == 5){
         enviar.color = random(0, 4);
     }
 
     int padID = checkID(MACAddr);
     esp_now_send(MACAddr, (uint8_t *)&enviar, sizeof(enviar));
+    writeBT(padID, enviar.patron, enviar.color);
+    //--------------------Control de Counter--------------------------------
+    counter++; //actualizo el valor del contador para que el proximo valor a enviar.
+    if (counter>=strlen(patron)){ //controlo el contador. Si llega al final del array, lo reinicio y se repite el patron.
+      counter=0;
+    } 
 
 }
